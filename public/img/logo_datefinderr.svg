@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 753.5 633.1">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #211230;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #211230;
+        stroke-miterlimit: 10;
+        stroke-width: 19px;
+      }
+
+      .cls-2 {
+        font-family: BalooBhaijaan-Regular, 'Baloo Bhaijaan';
+        font-size: 200px;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-3" d="M9.5,563.5l554,4s167,8,180-169c0,0,19-148-178-198,0,0-23-183-171-187-109.54-2.96-174.16-3.73-200.35-3.93-9.2-.07-13.65-.07-13.65-.07,0,0-159,11-165,167s-6,387-6,387Z"/>
+    <path class="cls-1" d="M205,10s153-2,169,196c0,0,185.64,5.98,174,198-10,165-171,162-171,162l213.55,3.12s153.5-20.64,148.98-188.88-174.03-179.74-174.03-179.74c0,0-34.53-180.04-158.5-184.5"/>
+    <text class="cls-2" transform="translate(24.79 541.7)"><tspan x="0" y="0">DF</tspan></text>
+  </g>
+</svg>
