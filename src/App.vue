@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import AccountPage from './components/Account.vue'
 import LoginPage from './components/Login.vue'
 import { supabase } from './supabase'
+import LandingPage from './components/LandingPage.vue';
 
 const session = ref()
 
@@ -56,10 +57,13 @@ onMounted(() => {
         </nav>
     </div>
 </header>
-<div class="container" style="padding: 50px 0 100px 0">
-  <AccountPage v-if="session" :session="session" />
-  <LoginPage v-else />
-</div>
+
+<main>
+  <div class="container" style="padding: 50px 0 100px 0">
+    <AccountPage v-if="session" :session="session" />
+    <LandingPage v-else />
+  </div>
+</main>
 </template>
 
 
