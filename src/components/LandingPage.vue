@@ -53,8 +53,8 @@ console.log('Hello World, this is the Landing Page');
     }
 
     .text-container {
-        flex: 0 0 70%;
-        padding-right: 40px;
+        flex: 0 0 60%;
+        padding-right: 80px;
     }
 
     .image-container {
