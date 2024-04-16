@@ -109,7 +109,7 @@ nav ul li a:hover {
 }
 
 .containerheader {
-  max-width: 750px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
