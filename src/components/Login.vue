@@ -1,3 +1,39 @@
+<script setup>
+import { ref } from 'vue'
+import {supabase} from "@/supabase";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
+
+const loading = ref(false)
+const email = ref('')
+const password = ref('')
+
+async function handleLogin() {
+  try {
+    loading.value = true
+    const {error} = await supabase.auth.signInWithPassword({
+      email: email.value,
+      password: password.value,
+    })
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
+    alert('You are logged in!')
+    await router.push('/dashboard')
+  } catch (error) {
+    if (error instanceof Error) {
+      alert(error.message)
+    }
+  } finally {
+    loading.value = false
+  }
+}
+
+</script>
+
 <template>
     <form class="row flex-center flex" @submit.prevent="handleLogin">
         <div class="col-6 form-widget">
@@ -12,43 +48,3 @@
         </div>
     </form>
 </template>
-
-<script>
-import { ref } from 'vue'
-import { supabase } from '../supabase'
-
-const loading = ref(false)
-const email = ref('')
-const password = ref('')
-
-const handleLogin = async () => {
-    try {
-        loading.value = true
-        const { error } = await supabase.auth.signInWithPassword({
-            email: email.value,
-            password: password.value,
-        })
-
-        if (error) throw error
-        alert('You are logged in!')
-    } catch (error) {
-        if (error instanceof Error) {
-            alert(error.message)
-        }
-    } finally {
-        loading.value = false
-    }
-}
-
-export default {
-    name: 'LoginPage',
-    setup() {
-        return {
-            loading,
-            email,
-            password,
-            handleLogin,
-        }
-    },
-}
-</script>

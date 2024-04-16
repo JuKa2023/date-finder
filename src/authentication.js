@@ -1,52 +1,63 @@
 import { supabase } from './supabase'
 
-async function login(email, password) {
-    if (is_authenticated()) {
-        console.log('Already logged in');
-        // router.push('/account');
-        return;
-    }
-
-    try {
-        const { error } = await supabase.auth.signInWithPassword({
-            email: email.value,
-            password: password.value,
-        })
-
-        if (error) throw error;
-    
-        localStorage.setItem('user', JSON.stringify(user));    
-        // router.push('/account');
-        
-
-    } catch (error) {
-        console.error('Login failed:', error.message);
-    }
-}
+const LOCAL_STORAGE_SESSION_KEY = 'supabase.auth.session';
+const LOCAL_STORAGE_USER_KEY = 'supabase.auth.user';
 
 async function is_authenticated() {
-    const user = localStorage.getItem('user');
-    if (user) {
-        return true;
-    }
-
-    const data = await supabase.auth.getSession();
-    const session = data?.session;
-    if (session) {
-        localStorage.setItem('user', JSON.stringify(session.user));
-    }
-    return !!session;
+    const session = await get_session();
+    console.log('is_authenticated:', session !== undefined);
+    return session !== undefined;
 }
 
-async function logout() {
-    try {
-        localStorage.removeItem('user');
-        const { error } = await supabase.auth.signOut();
-        if (error) throw error;
-        // router.push('/login');
-    } catch (error) {
-        console.error('Logout failed:', error.message);
+async function get_user() {
+    const cachedUser = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
+    if (cachedUser) {
+        return JSON.parse(cachedUser);
     }
+
+    const {data: {user}, error} = await supabase.auth.getUser();
+    if (error !== null || user === null) {
+        return undefined;
+    }
+
+    set_user(user);
+    return user;
 }
 
-export { login, is_authenticated, logout }
+async function get_session() {
+    const cachedSession = localStorage.getItem(LOCAL_STORAGE_SESSION_KEY);
+    if (cachedSession) {
+        return JSON.parse(cachedSession);
+    }
+
+    const response = await supabase.auth.getSession();
+    const {data: {session}, error} = response
+    if (error !== null || session === null) {
+        return undefined;
+    }
+
+    set_session(session);
+    return session ? session : undefined;
+}
+
+function set_user(user) {
+    localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(user));
+}
+
+function set_session(session) {
+    localStorage.setItem(LOCAL_STORAGE_SESSION_KEY, JSON.stringify(session));
+}
+
+function reset_local_storage() {
+    localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_SESSION_KEY);
+}
+
+export {
+    is_authenticated,
+    get_user,
+    get_session,
+    set_user,
+    set_session,
+    reset_local_storage,
+}

@@ -1,16 +1,41 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { supabase } from './supabase'
-import { authentication } from './authentication'
+import { get_user } from "@/authentication";
+import {supabase} from "@/supabase";
+import {useRouter} from "vue-router";
 
-const session = ref()
+const router = useRouter()
+
 const name = ref('')
+const is_logged_in = ref(false)
 
-onMounted(() => {
-  supabase.auth.onAuthStateChange((_, _session) => {
-    session.value = _session
-  })
+onMounted(async () => {
+  console.log('Hello World, this is the App Page')
 })
+
+supabase.auth.onAuthStateChange(async (event) => {
+  if (event === 'SIGNED_OUT') {
+    console.log('User signed out event detected in App.vue')
+    is_logged_in.value = false
+    name.value = ''
+  } else if (event === 'SIGNED_IN') {
+    is_logged_in.value = true
+    const user = get_user();
+    name.value = user.name
+  }
+})
+
+async function handle_logout() {
+  const {error} = await supabase.auth.signOut()
+  console.log(error)
+
+  if (!error) {
+    is_logged_in.value = false
+    name.value = ''
+    await router.push('/login')
+  }
+}
+
 </script>
 
 <template>
@@ -29,11 +54,12 @@ onMounted(() => {
             <a href="/"><img class="iconheader" src="/img/icon_konto.svg" alt="Konto"></a>
             <div class="dropdown-content">
               <a href="/">Konto Einstellungen</a>
-              <a href="/">Logout</a>
+              <a @click="handle_logout">Logout</a>
               <!-- Add additional links here if needed -->
             </div>
           </li>
         </ul>
+        <button @click="handle_logout" style="float: right;" v-if="is_logged_in">Logout</button>
       </nav>
     </div>
 </header>
@@ -42,9 +68,7 @@ onMounted(() => {
   <router-view></router-view>
 </main>
 
-
 </template>
-
 
 <style scoped>
 header {
