@@ -15,11 +15,8 @@ onMounted(() => {
     getProfile()
 })
 
-async function getProfile() {
+async function getProfile() {    
     try {
-        loading.value = true
-        const { user } = session.value
-
         const { data, error, status } = await supabase
             .from('profiles')
             .select(`username, website, avatar_url`)

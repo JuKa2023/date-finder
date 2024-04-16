@@ -1,3 +1,9 @@
+<script setup>
+
+console.log('Hello World, this is the Landing Page');
+
+</script>
+
 <template>
     <article>
         <div>
@@ -10,6 +16,19 @@
             <h2>
                 Möchtest du es ausprobieren?
             </h2>
+            <button class="shadow-button">Click Me</button>
+        
+        <div>
+            <img src="/img/logo_datefinderr" alt="">
+        </div>
         </div>
     </article>
 </template>
+
+<style>
+    article{
+        display: flex;
+        flex-direction: column;
+        max-width: 750px;
+    }
+</style>

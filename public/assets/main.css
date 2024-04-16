@@ -6,3 +6,23 @@ body{
     margin: 0px;
     font-family: 'Poppins', sans-serif;
 }
+
+.shadow-button {
+    border: none;
+    border-radius: 5px;
+    color: #211230;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0px rgba(33, 18, 48, 1);
+    transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shadow-button:hover{
+    background-color: #D77F8F;
+    box-shadow: none;
+}

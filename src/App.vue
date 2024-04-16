@@ -1,43 +1,12 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import AccountPage from './components/Account.vue'
 import { supabase } from './supabase'
-import LandingPage from './components/LandingPage.vue';
+import { authentication } from './authentication'
 
 const session = ref()
-
-
 const name = ref('')
 
 onMounted(() => {
-  supabase.auth.getSession().then(({ data }) => {
-    session.value = data.session
-
-    // get user data
-    if (data?.session) {
-      console.log(data.session.user.id)
-
-      // check local storage
-      const user = JSON.parse(localStorage.getItem('user'))
-      if (user) {
-        name.value = user.username
-      } else {
-        supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', data.session.user.id)
-          .single()
-          .then(({ data, error }) => {
-            if (error) console.error('error', error)
-            console.log('data', data)
-            name.value = data?.username
-            localStorage.setItem('user', JSON.stringify(data))
-          })
-        }
-    }
-
-  })
-
   supabase.auth.onAuthStateChange((_, _session) => {
     session.value = _session
   })
@@ -70,18 +39,14 @@ onMounted(() => {
 </header>
 
 <main>
-<router-view>
-  <LandingPage />
-  <AccountPage />
-</router-view></main>
+  <router-view></router-view>
+</main>
+
+
 </template>
 
 
 <style scoped>
-/* Header component styling here */
-/* Header component styling */
-
-
 header {
   background-color: #fefafd;
   padding: 10px;
