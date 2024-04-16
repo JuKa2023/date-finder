@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import AccountPage from './components/Account.vue'
-import LoginPage from './components/Login.vue'
 import { supabase } from './supabase'
 import LandingPage from './components/LandingPage.vue';
 
@@ -48,58 +47,113 @@ onMounted(() => {
 <template>
 <header>
     <div class="containerheader">
-        <nav>
-            <ul>
-            <li><a href="/"><img  class="iconheader" src="/img/logo_datefinderr.svg" alt=""></a></li>
-            <li><a href="/">Date Suchen {{ name ? `(${name})` : '' }}</a></li>
-            <li><a href="/"><img class="iconheader" src="/img/icon Konto.svg" alt=""></a></li>
-            </ul>
-        </nav>
+      <nav>
+        <ul>
+          <li class="dropdown">
+            <a href="/"><img class="iconheader" src="/img/logo_datefinderr.svg" alt="Home"></a>
+            <div class="dropdown-content">
+              <a href="/">Date Suchen</a>
+              <!-- Add additional links here if needed -->
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="/"><img class="iconheader" src="/img/icon_konto.svg" alt="Konto"></a>
+            <div class="dropdown-content">
+              <a href="/">Konto Einstellungen</a>
+              <a href="/">Logout</a>
+              <!-- Add additional links here if needed -->
+            </div>
+          </li>
+        </ul>
+      </nav>
     </div>
 </header>
 
 <main>
-  <div class="container" style="padding: 50px 0 100px 0">
-    <AccountPage v-if="session" :session="session" />
-    <LandingPage v-else />
-  </div>
-</main>
+<router-view>
+  <LandingPage />
+  <AccountPage />
+</router-view></main>
 </template>
 
 
 <style scoped>
 /* Header component styling here */
+/* Header component styling */
+
+
 header {
   background-color: #fefafd;
   padding: 10px;
-  margin: none;
-  font-family: 'poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
+
 nav ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
   list-style-type: none;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 nav ul li {
-  display: inline;
+  position: relative;
   margin-right: 10px;
   font-size: 18px;
-  height: 30px;
 }
 
-nav ul li a{
+nav ul li a {
   text-decoration: none;
   color: #000;
+  display: flex;
+  align-items: center;
 }
 
-nav ul li a:hover{
+nav ul li a:hover {
   color: #D77F8F;
 }
 
 .iconheader {
-  height: 30px;  }
+  height: 30px;
+}
+
+.containerheader {
+  max-width: 750px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fefafd;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 200px;
+  margin-top: 10px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Specific styling for right-aligned dropdown */
+nav ul li:last-child .dropdown-content {
+  right: 0;  /* Aligns the dropdown to the right edge of the last <li> element */
+}
+
 </style>

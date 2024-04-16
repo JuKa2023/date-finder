@@ -1,6 +1,6 @@
 <template>
         <button class="shadow-button">Click Me</button>
-    </template>
+</template>
 
 
 <style>
