@@ -73,7 +73,9 @@ async function handle_logout() {
 <style scoped>
 header {
   background-color: #fefafd;
-  padding: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -106,10 +108,11 @@ nav ul li a:hover {
 
 .iconheader {
   height: 30px;
+  padding-bottom: 10px;
 }
 
 .containerheader {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   width: 100%;
 }
@@ -122,7 +125,6 @@ nav ul li a:hover {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   width: 200px;
-  margin-top: 10px;
 }
 
 .dropdown-content a {
@@ -133,16 +135,15 @@ nav ul li a:hover {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #fefafd;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Specific styling for right-aligned dropdown */
 nav ul li:last-child .dropdown-content {
-  right: 0;  /* Aligns the dropdown to the right edge of the last <li> element */
+  right: 0;  
 }
 
 </style>

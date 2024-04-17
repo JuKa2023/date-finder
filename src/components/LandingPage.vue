@@ -5,7 +5,7 @@ console.log('Hello World, this is the Landing Page');
 </script>
 
 <template>
-    <section>
+    <section class="format">
         <h1>
             Date Finder
         </h1>
@@ -34,8 +34,8 @@ console.log('Hello World, this is the Landing Page');
 
 <style>
 
-    section {
-        max-width: 1200px;
+    .format {
+        max-width: 1000px;
         display: flex;  
         justify-content: space-between;
         align-items: center;
