@@ -1,20 +1,28 @@
 <template>
     <div>
-      <!-- Dynamically renders the current step component -->
+      <div class="progress-bar-container">
+        <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+      </div>
       <component :is="steps[currentStep].component" @step-complete="nextStep"/>
     </div>
-</template>
+  </template>
   
-<script>
+  <script>
   export default {
     data() {
       return {
         currentStep: 0,
         steps: [
           { component: 'StepOne' },
-          { component: 'StepTwo' }
+          { component: 'StepTwo' },
+          { component: 'StepThree' }
         ]
       };
+    },
+    computed: {
+      progressBarWidth() {
+        return ((this.currentStep + 1) / this.steps.length * 100) + '%';
+      }
     },
     methods: {
       nextStep() {
@@ -24,5 +32,21 @@
       }
     }
   }
-</script>
+  </script>
+  
+  <style>
+  .progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .progress-bar {
+    height: 100%;
+    background-color: #5cb85c;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+  }
+  </style>
   
