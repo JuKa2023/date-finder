@@ -15,7 +15,9 @@
         steps: [
           { component: 'StepOne' },
           { component: 'StepTwo' },
-          { component: 'StepThree' }
+          { component: 'StepThree'},
+          { component: 'StepFour'},
+          { component: 'StepFive'},
         ]
       };
     },
