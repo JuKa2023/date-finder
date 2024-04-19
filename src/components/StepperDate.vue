@@ -5,10 +5,23 @@
       </div>
       <component :is="steps[currentStep].component" @step-complete="nextStep"/>
     </div>
-  </template>
+</template>
   
   <script>
+  import StepOne from './StepOne.vue';
+  import StepTwo from './StepTwo.vue';
+  import StepThree from './StepThree.vue';
+  import StepFour from './StepFour.vue';
+  import StepFive from './StepFive.vue';
+
   export default {
+    components: {
+      StepOne,
+      StepTwo,
+      StepThree,
+      StepFour,
+      StepFive,
+    },
     data() {
       return {
         currentStep: 0,
