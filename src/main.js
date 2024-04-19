@@ -8,17 +8,20 @@ import Login from './components/Login.vue'
 import {is_authenticated, reset_local_storage, set_session} from "@/authentication";
 import {supabase} from "@/supabase";
 import Dashboard from "@/components/Dashboard.vue";
+import StepperDate from "@/components/StepperDate.vue";
 
 const REDIRECT_UNAUTHENTICATED = true;
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        {path: '/stepper', component: StepperDate},
         { path: '/account', component: Account, meta: { requiresAuth: true } },
         { path: '/login', component: Login },
         { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
         { path: '/', component: LandingPage, name: 'landing' },
         { path: '/:pathMatch(.)', redirect: { name: 'landing' } },
+
     ]
 })
 

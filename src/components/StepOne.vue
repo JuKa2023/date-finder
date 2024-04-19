@@ -36,6 +36,6 @@
   </script>
   
   <style scoped>
-  /* Your CSS here or in the global stylesheet */
+
   </style>
   

@@ -40,13 +40,13 @@
   .progress-bar-container {
     width: 100%;
     height: 20px;
-    background-color: #eee;
+    background-color: #ffffff;
     border-radius: 10px;
     margin-bottom: 20px;
   }
   .progress-bar {
     height: 100%;
-    background-color: #5cb85c;
+    background-color: #405983;
     border-radius: 10px;
     transition: width 0.3s ease-in-out;
   }
