@@ -34,15 +34,6 @@ console.log('Hello World, this is the Landing Page');
 
 <style>
 
-    .format {
-        max-width: 1000px;
-        display: flex;  
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        margin: 0 auto;
-    }
 
     .content-container {
         display: flex;

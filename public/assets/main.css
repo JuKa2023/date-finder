@@ -69,7 +69,17 @@ h1{
 }
 
 
-.activity{
+.format {
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+    .activity{
     margin-bottom: 0px;
 }
 .Bildcard{

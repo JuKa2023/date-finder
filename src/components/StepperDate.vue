@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="format">
       <div class="progress-bar-container">
         <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
       </div>
