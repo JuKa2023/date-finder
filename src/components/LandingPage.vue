@@ -28,7 +28,7 @@ console.log('Hello World, this is the Landing Page');
         <h3>
             Den los meld dich a.
         </h3>
-        <button class="shadow-button">Click Me</button>
+        <RouterLink class="shadow-button" to="/login">Click Me</RouterLink>
     </section>
 </template>
 

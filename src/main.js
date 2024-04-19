@@ -17,7 +17,8 @@ const router = createRouter({
         { path: '/account', component: Account, meta: { requiresAuth: true } },
         { path: '/login', component: Login },
         { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
-        { path: '/:pathMatch(.*)*', component: LandingPage },
+        { path: '/', component: LandingPage, name: 'landing' },
+        { path: '/:pathMatch(.)', redirect: { name: 'landing' } },
     ]
 })
 

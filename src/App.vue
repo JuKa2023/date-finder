@@ -52,10 +52,13 @@ async function handle_logout() {
           </li>
           <li class="dropdown">
             <a href="/"><img class="iconheader" src="/img/icon_konto.svg" alt="Konto"></a>
-            <div class="dropdown-content">
-              <a href="/">Konto Einstellungen</a>
+            <div class="dropdown-content" v-if="is_logged_in">
+              <RouterLink to="Account">Mein Konto</RouterLink>
               <a @click="handle_logout">Logout</a>
-              <!-- Add additional links here if needed -->
+            </div>
+            <div class="dropdown-content" v-else>
+              <RouterLink to="login">Login</RouterLink>
+              <RouterLink to="register">Registrieren</RouterLink>
             </div>
           </li>
         </ul>
