@@ -1,7 +1,7 @@
 <template>
     <div>
-      <h3>Was ist dein Budget?</h3>
-      <p>Bitte wähle dein maximales Budget aus, den du für deine Verabredung ausgeben möchtest. Es werden dir Vorschläge angezeigt, die deinem Budget entsprechen oder günstiger sind.</p>
+      <h3>Wann würdest du gerne auf ein Date gehen?</h3>
+      <p>Beachte dabei, dass bestimmte Aktivitäten nicht immer durchgeführt werden können. Ideen, die immer umgesetzt werden können, werden durch deine Auswahl nicht eingeschränkt.</p>
       <div class="options-container">
         <article v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardNotClick">
           <section>
@@ -22,9 +22,10 @@
     data() {
       return {
         options: [
-          { text: 'Kostenlos', img: '/img/active.png' },
-          { text: 'Budget freundlich', img: '/img/laidback.png' },
-          { text: "Luxuriös", img: '/img/neutral.png' }
+          { text: 'Morgen', img: '/img/active.png' },
+          { text: 'Nachmittag', img: '/img/laidback.png' },
+          { text: 'Abend', img: '/img/neutral.png' },
+          { text: 'Nacht', img: '/img/neutral.png' }
         ]
       };
     },
