@@ -12,8 +12,8 @@
             <img class="logo" src="/img/logo_datefinderr.svg" alt="logo related to the activity">
           </section>
         </article>
-        <button @click="selectOption({text:'spielt keine Rolle'})" class="shadow-button">spielt keine Rolle</button>
       </div>
+      <button @click="selectOption({text:'spielt keine Rolle'})" class="shadow-button">spielt keine Rolle</button>
     </div>
   </template>
   
