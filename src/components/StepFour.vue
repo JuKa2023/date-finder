@@ -2,8 +2,8 @@
     <div>
       <h3>Wann würdest du gerne auf ein Date gehen?</h3>
       <p>Beachte dabei, dass bestimmte Aktivitäten nicht immer durchgeführt werden können. Ideen, die immer umgesetzt werden können, werden durch deine Auswahl nicht eingeschränkt.</p>
-      <div class="options-container">
-        <article v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardNotClick">
+      <article class="options-container">
+        <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardNotClick">
           <section>
             <div>
               <h2 class="activity">{{ option.text }}</h2>
@@ -11,8 +11,8 @@
             <img class="Bildcard" :src="option.img" :alt="`illustration of ${option.text}`">
             <img class="logo" src="/img/logo_datefinderr.svg" alt="logo related to the activity">
           </section>
-        </article>
-      </div>
+        </div>
+      </article>
       <button @click="selectOption({text:'spielt keine Rolle'})" class="shadow-button">spielt keine Rolle</button>
     </div>
   </template>
