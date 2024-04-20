@@ -4,6 +4,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import App from './App.vue'
 import Account from './components/Account.vue'
 import LandingPage from './components/LandingPage.vue'
+import DateIdee from './components/DateIdee.vue'
 import Login from './components/Login.vue'
 import {is_authenticated, reset_local_storage, set_session} from "@/authentication";
 import {supabase} from "@/supabase";
@@ -18,6 +19,7 @@ const router = createRouter({
         {path: '/stepper', component: StepperDate},
         { path: '/account', component: Account, meta: { requiresAuth: true } },
         { path: '/login', component: Login },
+        {path: '/dateideen', component: DateIdee},
         { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
         { path: '/', component: LandingPage, name: 'landing' },
         { path: '/:pathMatch(.)', redirect: { name: 'landing' } },
