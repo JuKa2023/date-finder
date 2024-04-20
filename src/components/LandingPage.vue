@@ -1,6 +1,9 @@
 <script setup>
 
-console.log('Hello World, this is the Landing Page');
+document.body.style.backgroundImage = "url(../img/Test.svg)";
+document.body.style.backgroundSize = "cover";
+document.body.style.backgroundRepeat = "no-repeat";
+document.body.style.backgroundAttachment = "fixed";
 
 </script>
 
@@ -32,12 +35,14 @@ console.log('Hello World, this is the Landing Page');
     </section>
 </template>
 
-<style>
+<style scoped>
+
 
 
     .content-container {
         display: flex;
-        justify-content: space-between; 
+        justify-content: space-between;
+        flex-direction: row;
         width: 100%;
         margin: 0 auto;
         gap: 20px;

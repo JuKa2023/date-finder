@@ -2,35 +2,41 @@
 
 h1, h2, h3 {
     font-family: 'Fredoka One', sans-serif;
-    color: #211230;
+    color: #FCF0F9;
 
+}
+
+h1{
+    font-size: 48px;
+}
+h2{
+    font-size: 36px;
+}
+h3{
+    font-size: 24px;
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
-    color: #211230;
+    font-family: 'Roboto', sans-serif;
+    color: #FCF0F9;
+    font-size: 18px;
 }
 
 main{
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 body{
     margin: 0px;
-    /* background-image: url(../img/BackgroundImageV2.png);*/
-    background-color: #1a1124;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: #E5BABA;
 }
 
-h1{
-    font-size: 40px;
-}
+
 
 .shadow-button {
     border: none;
     border-radius: 5px;
+    background-color: #3794CF;
     color: #211230;
     text-align: center;
     text-decoration: none;
@@ -41,10 +47,11 @@ h1{
     cursor: pointer;
     box-shadow: 0 4px 8px 0px rgba(33, 18, 48, 1);
     transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .shadow-button:hover{
-    background-color: #D77F8F;
+    background-color: #B2D0E2;
     box-shadow: none;
 }
 
@@ -86,7 +93,6 @@ h1{
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
-    background-color: rgba(254, 250, 253, 0.5);
     border-radius: 10px;
     padding: 0px 10px;
 

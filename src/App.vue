@@ -65,6 +65,7 @@ async function handle_logout() {
         <button @click="handle_logout" style="float: right;" v-if="is_logged_in">Logout</button>
       </nav>
     </div>
+    <hr class="faint-line">
 </header>
 
 <main>
@@ -75,11 +76,11 @@ async function handle_logout() {
 
 <style scoped>
 header {
-  background-color: rgba(254, 250, 253, 0.5);
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
   font-family: 'Poppins', sans-serif;
+  background-color: #E5BABA;
 }
 
 nav ul {
@@ -100,13 +101,13 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #000;
+  color: #D0A8C5;
   display: flex;
   align-items: center;
 }
 
 nav ul li a:hover {
-  color: #D77F8F;
+  color: #EBCFCD;
 }
 
 .iconheader {
@@ -124,21 +125,21 @@ nav ul li a:hover {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #fefafd;
+  background-color: #100a15;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   width: 200px;
 }
 
 .dropdown-content a {
-  color: black;
+  color: #D0A8C5;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 .dropdown-content a:hover {
-  background-color: #fefafd;
+  color:#EBCFCD ;
 }
 
 .dropdown:hover .dropdown-content {
@@ -147,6 +148,14 @@ nav ul li a:hover {
 
 nav ul li:last-child .dropdown-content {
   right: 0;  
+}
+
+.faint-line {
+  border: none;
+  height: 1px; /* You can adjust the height to your preference */
+  background-color: #211230; /* A light grey color with low opacity for faintness */
+  margin-top: 20px; /* Adjust the margin to control spacing above the line */
+  margin-bottom: 20px; /* Adjust the margin to control spacing below the line */
 }
 
 </style>
