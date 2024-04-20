@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content-container">
       <h3>Wie viel Zeit hast du für dein Date?</h3>
       <p>Beachte dabei, dass bestimmte Aktivitäten nicht immer durchgeführt werden können. Ideen, die immer umgesetzt werden können, werden durch deine Auswahl nicht eingeschränkt.</p>
       <article class="options-container">

@@ -75,7 +75,7 @@ async function handle_logout() {
 
 <style scoped>
 header {
-  background-color: #fefafd;
+  background-color: rgba(254, 250, 253, 0.5);
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;

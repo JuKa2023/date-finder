@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content-container">
       <h3>Welche Arten von Dates suchst du?</h3>
       <p>Umso mehr angaben du betätigst umso besser kann deine Idee auf dich zugeschnitten werden.</p>
       <article class="options-container">
@@ -36,6 +36,7 @@
   </script>
   
   <style scoped>
+
 
   </style>
   

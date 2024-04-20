@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content-container">
       <h3>Wo würdest du gerne dein Date ausführen?</h3>
       <p>Bitte beachte die Witterungsverhältnisse zum Zeitpunkt der Durchführung und wählen den Standort entsprechend aus.</p>
       <article class="options-container">

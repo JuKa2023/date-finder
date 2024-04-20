@@ -49,13 +49,13 @@
   }
   </script>
   
-  <style>
+  <style scoped>
   .progress-bar-container {
     width: 100%;
     height: 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .progress-bar {
     height: 100%;
