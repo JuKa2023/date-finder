@@ -1,4 +1,11 @@
 <template>
+  <h1>Das sind die Top auswahlen für dein Date</h1>
+  <p>Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am besten passende zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht durchgeführt hast.</p>
+  <div class="chips">
+    <chip class="chip" v-for="restriction in restrictions" :key="restriction.id" @click="removeRestriction(restriction.id)">
+
+    </chip>
+  </div>
   <article class="results-container">
     <section v-for="result in results" :key="result.id" class="cardNotClick">
       <div>
