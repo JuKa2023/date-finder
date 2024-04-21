@@ -1,6 +1,6 @@
 <template>
     <div class="content-container">
-      <h3>Wie viel Zeit hast du für dein Date?</h3>
+      <h3>Wann würdest du gerne auf ein Date gehen?</h3>
       <p>Beachte dabei, dass bestimmte Aktivitäten nicht immer durchgeführt werden können. Ideen, die immer umgesetzt werden können, werden durch deine Auswahl nicht eingeschränkt.</p>
       <article class="options-container">
         <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardNotClick">
@@ -22,15 +22,16 @@
     data() {
       return {
         options: [
-          { text: 'paar Stunden', img: '/img/active.png' },
-          { text: 'halber Tag', img: '/img/laidback.png' },
-          { text: 'ganzer Tag', img: '/img/neutral.png' },
+          { text: 'Morgen', img: '/img/active.png' },
+          { text: 'Nachmittag', img: '/img/laidback.png' },
+          { text: 'Abend', img: '/img/neutral.png' },
+          { text: 'Nacht', img: '/img/neutral.png' }
         ]
       };
     },
     methods: {
       selectOption(option) {
-        this.$emit('step-complete'); // Optionally pass option data
+        this.$emit('step-complete', option);
       }
     }
   }

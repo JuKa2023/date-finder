@@ -21,7 +21,7 @@
 </template>
 
 
-<Style>
+<style>
     .cardNotClick{
         background-color: #fefafd;
         padding: 10px 20px;
@@ -58,4 +58,4 @@
     .activity{
         margin-bottom: 0px;
     }
-</Style>
+</style>

@@ -9,21 +9,20 @@ import Login from './components/Login.vue'
 import {is_authenticated, reset_local_storage, set_session} from "@/authentication";
 import {supabase} from "@/supabase";
 import Dashboard from "@/components/Dashboard.vue";
-import StepperDate from "@/components/StepperDate.vue";
-
-const REDIRECT_UNAUTHENTICATED = true;
+import DateFilter from "@/components/search/DateSearch.vue";
+import Register from "@/components/register/Register.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: '/stepper', component: StepperDate},
+        { path: '/find', component: DateFilter, meta: {requiresAuth: true} },
         { path: '/account', component: Account, meta: { requiresAuth: true } },
+
         { path: '/login', component: Login },
-        {path: '/dateideen', component: DateIdee},
+        { path: '/register', component: Register },
         { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
         { path: '/', component: LandingPage, name: 'landing' },
-        { path: '/:pathMatch(.)', redirect: { name: 'landing' } },
-
+        { path: '/:pathMatch(.*)*', redirect: { name: 'landing' } },
     ]
 })
 

@@ -1,7 +1,7 @@
 <template>
     <div class="content-container">
-      <h3>Welche Arten von Dates suchst du?</h3>
-      <p>Umso mehr angaben du betätigst umso besser kann deine Idee auf dich zugeschnitten werden.</p>
+      <h3>Wie viel Zeit hast du für dein Date?</h3>
+      <p>Beachte dabei, dass bestimmte Aktivitäten nicht immer durchgeführt werden können. Ideen, die immer umgesetzt werden können, werden durch deine Auswahl nicht eingeschränkt.</p>
       <article class="options-container">
         <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardNotClick">
           <section>
@@ -22,21 +22,21 @@
     data() {
       return {
         options: [
-          { text: 'Active', img: '/img/active.png' },
-          { text: 'Laid Back', img: '/img/laidback.png' },
+          { text: 'paar Stunden', img: '/img/active.png' },
+          { text: 'halber Tag', img: '/img/laidback.png' },
+          { text: 'ganzer Tag', img: '/img/neutral.png' },
         ]
       };
     },
     methods: {
       selectOption(option) {
-        this.$emit('step-complete'); // Optionally pass option data
+        this.$emit('step-complete', option);
       }
     }
   }
   </script>
   
   <style scoped>
-
-
+  /* Your CSS here or in the global stylesheet */
   </style>
   

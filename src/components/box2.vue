@@ -10,6 +10,6 @@
     </article>
 </template>
 
-<Style>
+<style>
     
-</Style>
+</style>

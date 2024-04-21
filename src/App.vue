@@ -46,8 +46,7 @@ async function handle_logout() {
           <li class="dropdown">
             <a href="/"><img class="iconheader" src="/img/logo_datefinderr.svg" alt="Home"></a>
             <div class="dropdown-content">
-              <a href="/">Date Suchen</a>
-              <!-- Add additional links here if needed -->
+              <RouterLink to="find">Date suchen </RouterLink>
             </div>
           </li>
           <li class="dropdown">
