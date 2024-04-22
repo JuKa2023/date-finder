@@ -61,7 +61,6 @@ async function handle_logout() {
             </div>
           </li>
         </ul>
-        <button @click="handle_logout" style="float: right;" v-if="is_logged_in">Logout</button>
       </nav>
     </div>
     <hr class="faint-line">

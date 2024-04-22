@@ -2,11 +2,10 @@
 
 import MultiStep from "@/components/MultiStep.vue";
 
-import StepOne from "@/components/search/steps/StepOne.vue";
-import StepTwo from "@/components/search/steps/StepTwo.vue";
-import StepThree from "@/components/search/steps/StepThree.vue";
-import StepFour from "@/components/search/steps/StepFour.vue";
-import StepFive from "@/components/search/steps/StepFive.vue";
+import StepOne from "@/components/register/steps/StepOne.vue";
+import StepTwo from "@/components/register/steps/StepTwo.vue";
+import StepThree from "@/components/register/steps/StepThree.vue";
+import StepFour from "@/components/register/steps/StepFour.vue";
 import {ref} from "vue";
 
 const registerSteps = [
