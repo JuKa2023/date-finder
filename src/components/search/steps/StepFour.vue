@@ -1,12 +1,12 @@
 <template>
     <div class="content-container">
-      <h3>Wann würdest du gerne auf ein Date gehen?</h3>
+      <h2>Wann würdest du gerne auf ein Date gehen?</h2>
       <p>Beachte dabei, dass bestimmte Aktivitäten nicht immer durchgeführt werden können. Ideen, die immer umgesetzt werden können, werden durch deine Auswahl nicht eingeschränkt.</p>
       <article class="options-container">
-        <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardNotClick">
+        <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardClickable">
           <section>
             <div>
-              <h2 class="activity">{{ option.text }}</h2>
+              <h3 class="activity">{{ option.text }}</h3>
             </div>
             <img class="Bildcard" :src="option.img" :alt="`illustration of ${option.text}`">
             <img class="logo" src="/img/logo_datefinderr.svg" alt="logo related to the activity">

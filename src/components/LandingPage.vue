@@ -8,7 +8,7 @@ document.body.style.backgroundAttachment = "fixed";
 </script>
 
 <template>
-    <section class="format">
+    <section class="format blur-background">
         <h1>
             Date Finder
         </h1>
@@ -36,6 +36,12 @@ document.body.style.backgroundAttachment = "fixed";
 </template>
 
 <style scoped>
+
+.blur-background {
+  position: relative;
+  backdrop-filter: blur(10px); /* Adjust blur intensity as needed */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
 
 
 

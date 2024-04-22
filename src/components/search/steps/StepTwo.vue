@@ -1,12 +1,12 @@
 <template>
   <div class="content-container">
-    <h3>Was ist dein Budget?</h3>
+    <h2>Was ist dein Budget?</h2>
     <p>Bitte wähle dein maximales Budget aus, den du für deine Verabredung ausgeben möchtest. Es werden dir Vorschläge angezeigt, die deinem Budget entsprechen oder günstiger sind.</p>
     <article class="options-container">
-      <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardNotClick">
+      <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardClickable">
         <section>
           <div>
-            <h2 class="activity">{{ option.text }}</h2>
+            <h3 class="activity">{{ option.text }}</h3>
           </div>
           <img class="Bildcard" :src="option.img" :alt="`illustration of ${option.text}`">
           <img class="logo" src="/img/logo_datefinderr.svg" alt="logo related to the activity">
@@ -34,29 +34,5 @@ function selectOption(option) {
 </script>
 
 <style scoped>
-/* Styles for your component */
-.options-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.cardNotClick {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.cardNotClick:hover {
-  transform: scale(1.05);
-}
-
-.shadow-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #405983;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 </style>
