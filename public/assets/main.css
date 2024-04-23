@@ -103,7 +103,7 @@ body{
     justify-content: center;
     align-items: center;
 
-    border-radius: 10px;
+    border-radius: 4px;
     box-shadow: 0 4px 8px 0px rgba(33, 18, 48, 1);
     cursor: pointer;
 }
