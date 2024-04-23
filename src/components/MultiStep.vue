@@ -39,6 +39,7 @@ function handleStepComplete(data) {
     <div class="progress-bar-container">
       <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
     </div>
+
     <component :is="currentComponent" @step-complete="handleStepComplete"/>
   </div>
 </template>

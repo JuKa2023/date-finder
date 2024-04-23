@@ -24,7 +24,32 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
+
+const results = ref([
+  {
+    id: 1,
+    title: 'Kino',
+    description: 'Schau dir einen Film in einem Kino in deiner Nähe an.',
+    imageUrl: 'https://via.placeholder.com/300',
+    tags: ['Film', 'Kino', 'Unterhaltung'],
+  },
+  {
+    id: 2,
+    title: 'Picknick im Park',
+    description: 'Genieße ein romantisches Picknick im Park.',
+    imageUrl: 'https://via.placeholder.com/300',
+    tags: ['Picknick', 'Natur', 'Romantisch'],
+  },
+  {
+    id: 3,
+    title: 'Kochkurs',
+    description: 'Lerne gemeinsam ein neues Gericht in einem Kochkurs.',
+    imageUrl: 'https://via.placeholder.com/300',
+    tags: ['Kochen', 'Kochkurs', 'Gemeinsam'],
+  },
+]);
 
 </script>
 

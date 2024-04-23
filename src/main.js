@@ -4,7 +4,6 @@ import {createRouter, createWebHistory} from 'vue-router'
 import App from './App.vue'
 import Account from './components/Account.vue'
 import LandingPage from './components/LandingPage.vue'
-import DateIdee from './components/DateIdee.vue'
 import Login from './components/Login.vue'
 import {is_authenticated, reset_local_storage, set_session} from "@/authentication";
 import {supabase} from "@/supabase";

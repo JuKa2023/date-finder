@@ -1,6 +1,7 @@
 <script setup>
 
 import MultiStep from "@/components/MultiStep.vue";
+import DateIdeen from "@/components/DateIdeen.vue";
 
 import StepOne from "@/components/search/steps/StepOne.vue";
 import StepTwo from "@/components/search/steps/StepTwo.vue";
@@ -17,7 +18,8 @@ const registerSteps = [
   { name: 'StepFive', path: '@/components/search', component: StepFive }
 ];
 
-const isComplete = ref(false);
+//const isComplete = ref(false); // TODO: change back to false
+const isComplete = ref(true);
 
 function handleFilterComplete(results) {
   console.log('All search complete', results);
@@ -28,6 +30,7 @@ function handleFilterComplete(results) {
 
 <template>
   <MultiStep :steps="registerSteps" @all-steps-complete="handleFilterComplete" v-if="!isComplete"/>
+  <DateIdeen v-else></DateIdeen>
 </template>
 
 <style scoped>
