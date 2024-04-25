@@ -67,6 +67,7 @@ async function updateProfile() {
 </script>
 
 <template>
+  <article class="format">
   <h1>Account</h1>
   <form class="form-widget" @submit.prevent="updateProfile">
       <div>
@@ -74,17 +75,41 @@ async function updateProfile() {
           <input id="email" type="text" v-model="email" disabled />
       </div>
       <div>
-          <label for="username">Name</label>
-          <input id="username" type="text" v-model="username" />
+          <label for="vorname">Vorame</label>
+          <input id="vorname" type="text" v-model="username" />
+      </div>
+    <div>
+      <label for="username">Vorame</label>
+      <input id="username" type="text" v-model="username" />
+    </div>
+    <h2>Settings</h2>
+      <div>
+        <label for="passwort">passwort</label>
+        <input id="passwort" type="text" v-model="website" />
       </div>
       <div>
-          <label for="website">Website</label>
-          <input id="website" type="url" v-model="website" />
+        <label for="einschränkungen">einschränkungen</label>
+        <input id="einschränkungen" type="text" v-model="username" />
       </div>
+
+    <h2>Hobbies</h2>
+    <div>
+      <label for="hobbies">passwort</label>
+      <input id="hobbies" type="text" v-model="website" />
+    </div>
+
+    <h2>Interessen</h2>
+    <div>
+      <label for="interessen">passwort</label>
+      <input id="interessen" type="text" v-model="website" />
+    </div>
+
 
       <div>
           <input type="submit" class="button primary block" :value="loading ? 'Loading ...' : 'Update'"
               :disabled="loading" />
       </div>
+
   </form>
+  </article>
 </template>

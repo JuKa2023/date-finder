@@ -24,7 +24,7 @@
     data() {
       return {
         options: [
-          { text: 'paar Stunden', img: '/img/active.png' },
+          { text: 'paar Stunden', img: '/img/active.png', },
           { text: 'halber Tag', img: '/img/laidback.png' },
           { text: 'ganzer Tag', img: '/img/neutral.png' },
         ]
