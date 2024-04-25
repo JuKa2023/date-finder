@@ -29,7 +29,7 @@ main{
 }
 
 body{
-    margin: 0px;
+    margin: 0;
     background-color: #E5BABA;
 }
 
@@ -48,7 +48,7 @@ body{
     padding: 15px 32px;
     margin: 4px 2px;
     cursor: pointer;
-    box-shadow: 0 4px 8px 0px rgba(33, 18, 48, 1);
+    box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
     transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Open Sans', sans-serif;
 }
@@ -80,7 +80,6 @@ body{
 
 .cardClickable{
     background-color: #fefafd;
-    padding: 10px 20px;
     margin: 20px;
     font-family: 'poppins bold', sans-serif;
     width: 20%;
@@ -91,17 +90,38 @@ body{
     align-items: center;
 
     border-radius: 4px;
-    box-shadow: 0 4px 8px 0px rgba(33, 18, 48, 1);
+    box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
     cursor: pointer;
+}
+
+.top{
+    padding: 10px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cardClickable:hover {
     transform: scale(1.05);
 }
 
-.cardClickable img.logo{
-    width: 50px; /* Logo width */
-    height: 50px;
+
+
+.farbbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: calc(100% - 20px);
+    padding: 10px 10px;
+    background-color: #405983;
+}
+
+.farbbox img{
+    height: 100%;
 }
 
 
@@ -118,14 +138,9 @@ body{
 }
 
     .activity{
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 .Bildcard{
     margin: 10px;
     max-width: 80%;
-}
-
-.logo{
-    margin: 10px;
-    max-width: 10%;
 }

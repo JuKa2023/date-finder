@@ -19,7 +19,7 @@ const registerSteps = [
 ];
 
 //const isComplete = ref(false); // TODO: change back to false
-const isComplete = ref(true);
+const isComplete = ref(false);
 
 function handleFilterComplete(results) {
   console.log('All search complete', results);

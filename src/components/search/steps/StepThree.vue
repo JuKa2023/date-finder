@@ -4,11 +4,15 @@
     <p>Bitte beachte die Witterungsverhältnisse zum Zeitpunkt der Durchführung und wählen den Standort entsprechend aus.</p>
     <article class="options-container">
       <div v-for="option in options" :key="option.text" @click="selectOption(option)" class="cardClickable">
+        <div class="top">
           <div>
             <h3 class="activity">{{ option.text }}</h3>
           </div>
           <img class="Bildcard" :src="option.img" :alt="`illustration of ${option.text}`">
+        </div>
+        <div class="farbbox">
           <img class="logo" src="/img/logo_datefinderr.svg" alt="logo related to the activity">
+        </div>
       </div>
     </article>
     <button @click="selectOption({text: 'spielt keine Rolle'})" class="shadow-button">spielt keine Rolle</button>

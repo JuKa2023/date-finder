@@ -70,7 +70,7 @@ const results = ref([
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   border-radius: 4px;
