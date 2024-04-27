@@ -18,27 +18,25 @@
       <button @click="selectOption({text:'spielt keine Rolle'})" class="shadow-button">spielt keine Rolle</button>
     </div>
   </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        options: [
-          { text: 'paar Stunden', img: '/img/active.png', },
-          { text: 'halber Tag', img: '/img/laidback.png' },
-          { text: 'ganzer Tag', img: '/img/neutral.png' },
-        ]
-      };
-    },
-    methods: {
-      selectOption(option) {
-        this.$emit('step-complete', option);
-      }
+
+<script setup>
+import {ref, defineEmits} from 'vue';
+
+const emits = defineEmits(['step-complete']);
+
+const options = ref([
+  { text: 'paar Stunden', img: '/img/active.png', },
+  { text: 'halber Tag', img: '/img/laidback.png' },
+  { text: 'ganzer Tag', img: '/img/neutral.png' },
+]);
+
+function selectOption(option) {
+  if (option.text === 'spielt keine Rolle') {
+    for (let i = 0; i < options.value.length; i++) {
+      emits('step-complete', options.value[i]);
     }
+    return;
   }
-  </script>
-  
-  <style scoped>
-  /* Your CSS here or in the global stylesheet */
-  </style>
-  
+  emits('step-complete', option);
+}
+</script>
