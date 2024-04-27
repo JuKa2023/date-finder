@@ -18,12 +18,13 @@ const registerSteps = [
   { name: 'StepFive', path: '@/components/search', component: StepFive }
 ];
 
-//const isComplete = ref(false); // TODO: change back to false
 const isComplete = ref(false);
 
+// Function to handle the completion of the filter (gather all selected options)
 function handleFilterComplete(results) {
-  console.log('All search complete', results);
   isComplete.value = true;
+  const selectedOptions = Array.from(results.results); // Gather all selected options as an array
+  console.log(selectedOptions);
 }
 
 </script>

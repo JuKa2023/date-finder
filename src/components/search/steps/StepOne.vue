@@ -25,11 +25,17 @@ import {ref, defineEmits} from 'vue';
 const emits = defineEmits(['step-complete']);
 
 const options = ref([
-  {text: 'Active', img: '/img/active.png'},
-  {text: 'Laid Back', img: '/img/laidback.png'},
+  {text: 'aktiv', img: '/img/active.png'},
+  {text: 'locker', img: '/img/laidback.png'},
 ]);
 
 function selectOption(option) {
+  if (option.text === 'spielt keine Rolle') {
+    for (let i = 0; i < options.value.length; i++) {
+      emits('step-complete', options.value[i]);
+    }
+    return;
+  }
   emits('step-complete', option);
 }
 </script>

@@ -20,18 +20,20 @@ const currentComponent = computed(() => {
 });
 
 function nextStep(data) {
-  results.value.push(data);
+  const optionText = data.text;
+  results.value.push(optionText);
   if (currentStep.value < props.steps.length - 1) {
     currentStep.value++;
   } else {
     console.log('All search complete', results.value);
-    emits('all-steps-complete', results.value);
+    emits('all-steps-complete', { results: results.value });
   }
 }
 
 function handleStepComplete(data) {
   nextStep(data);
 }
+
 </script>
 
 <template>

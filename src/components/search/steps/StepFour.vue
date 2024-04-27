@@ -33,6 +33,12 @@
     },
     methods: {
       selectOption(option) {
+        if (option.text === 'spielt keine Rolle') {
+          for (let i = 0; i < options.value.length; i++) {
+            emits('step-complete', options.value[i]);
+          }
+          return;
+        }
         this.$emit('step-complete', option);
       }
     }
