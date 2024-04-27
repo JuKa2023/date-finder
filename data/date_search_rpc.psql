@@ -1,0 +1,22 @@
+DECLARE
+  tags_array text[];
+BEGIN
+  -- Extract the array of tags from the JSON input
+  tags_array := ARRAY(SELECT jsonb_array_elements_text(input_json -> 'tags'));
+
+  RETURN QUERY
+  SELECT
+    i.id,
+    i.title,
+    i.description,
+    i.image_url,
+    array_agg(DISTINCT t.name)
+  FROM
+    idea i
+    JOIN ideas_tags it ON i.id = it.idea_id
+    JOIN tag t ON it.tag_id = t.id
+  WHERE
+    t.name = ANY(tags_array)
+  GROUP BY
+    i.id;
+END;
