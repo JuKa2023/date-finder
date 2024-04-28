@@ -10,12 +10,14 @@ import {supabase} from "@/supabase";
 import Dashboard from "@/components/Dashboard.vue";
 import DateFilter from "@/components/search/DateSearch.vue";
 import Register from "@/components/register/Register.vue";
+import DateIdea from "@/components/DateIdea.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: '/find', component: DateFilter, meta: {requiresAuth: true} },
         { path: '/account', component: Account, meta: { requiresAuth: true } },
+        { path: '/idea/:id', component: DateIdea, meta: { requiresAuth: true }, name: 'idea'},
 
         { path: '/login', component: Login },
         { path: '/register', component: Register },
