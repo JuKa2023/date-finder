@@ -101,10 +101,8 @@ getCachedSearch();
     <h1>Das sind die Top auswahlen für dein Date</h1>
     <p>Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am besten passende zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht durchgeführt hast.</p>
 
-    <section class="chips">
-      <chip class="chip" v-for="restriction in searchTags" :key="restriction.id" @click="removeRestriction(restriction.id)">
-
-      </chip>
+    <section>
+      <chip class="chip" v-for="restriction in searchTags" :key="restriction.id" @click="removeRestriction(restriction.id)"></chip>
     </section>
 
     <article class="results-container">

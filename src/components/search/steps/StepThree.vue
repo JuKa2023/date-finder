@@ -10,7 +10,7 @@
           </div>
           <img class="Bildcard" :src="option.img" :alt="`illustration of ${option.text}`">
         </div>
-        <div class="farbbox">
+        <div class="farbbox" :style="{ backgroundColor: option.color }">
           <img class="logo" src="/img/logo_datefinderr.svg" alt="logo related to the activity">
         </div>
       </div>
@@ -23,8 +23,8 @@
 import { ref, defineEmits } from 'vue';
 
 const options = ref([
-  { text: 'Drinnen', img: '/img/active.png' },
-  { text: 'Draussen', img: '/img/laidback.png' },
+  { text: 'Drinnen', img: '/img/active.png', color: '#00796B'},
+  { text: 'Draussen', img: '/img/laidback.png', color: '#8B1B42'},
 ]);
 
 const emits = defineEmits(['step-complete']);
