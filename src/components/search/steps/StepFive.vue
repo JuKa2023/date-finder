@@ -15,7 +15,7 @@
           </div>
         </div>
       </article>
-      <button @click="selectOption({text:'spielt keine Rolle'})" class="shadow-button">spielt keine Rolle</button>
+      <button @click="selectOption({text:'spielt keine Rolle'})" class="shadow-button">egal</button>
     </div>
   </template>
 
