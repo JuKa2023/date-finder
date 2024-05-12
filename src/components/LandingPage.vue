@@ -31,7 +31,7 @@ document.body.style.backgroundAttachment = "fixed";
         <h3>
             Den los meld dich a.
         </h3>
-        <RouterLink class="shadow-button" to="/login">Click Me</RouterLink>
+        <RouterLink class="shadow-button" to="/login">anmelden</RouterLink>
     </section>
 </template>
 

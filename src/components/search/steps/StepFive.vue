@@ -39,4 +39,4 @@ function selectOption(option) {
   }
   emits('step-complete', option);
 }
-</script>
+</script><form data-v-6d0444a6 class="form-widget">…</form>

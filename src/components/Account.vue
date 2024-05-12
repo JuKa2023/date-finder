@@ -7,6 +7,7 @@ const loading = ref(true)
 
 // Account properties
 const email = ref('')
+const vorname = ref('')
 const username = ref('')
 const website = ref('')
 const avatar_url = ref('')
@@ -70,38 +71,43 @@ async function updateProfile() {
   <article class="format">
   <h1>Account</h1>
   <form class="form-widget" @submit.prevent="updateProfile">
-      <div>
-          <label for="email">Email</label>
-          <input id="email" type="text" v-model="email" disabled />
+      <div class="flex">
+          <label for="email" class="label">Email</label>
+          <input id="email" type="text" v-model="email" class="input" disabled />
       </div>
-      <div>
-          <label for="vorname">Vorame</label>
-          <input id="vorname" type="text" v-model="username" />
+      <div class="flex">
+          <label for="vorname" class="label">Vorame</label>
+          <input id="vorname" type="text" v-model="website" class="input" />
       </div>
-    <div>
-      <label for="username">Vorame</label>
-      <input id="username" type="text" v-model="username" />
-    </div>
+      <div class="flex">
+        <label for="username" class="label">Username</label>
+        <input id="username" type="text" v-model="username" class="input" />
+      </div>
     <h2>Settings</h2>
-      <div>
-        <label for="passwort">passwort</label>
-        <input id="passwort" type="text" v-model="website" />
+      <div class="flex">
+        <label for="passwort" class="label">passwort</label>
+        <input id="passwort" type="text" v-model="website" class="input"/>
       </div>
-      <div>
-        <label for="einschränkungen">einschränkungen</label>
-        <input id="einschränkungen" type="text" v-model="username" />
+      <div class="flex">
+        <label for="einschränkungen" class="label">einschränkungen</label>
+        <input id="einschränkungen" type="text" v-model="website" class="input"/>
       </div>
 
-    <h2>Hobbies</h2>
-    <div>
-      <label for="hobbies">passwort</label>
-      <input id="hobbies" type="text" v-model="website" />
-    </div>
-
-    <h2>Interessen</h2>
-    <div>
-      <label for="interessen">passwort</label>
-      <input id="interessen" type="text" v-model="website" />
+    <div class="flex">
+      <div>
+        <h2>Hobbies</h2>
+        <div class="flex">
+          <label for="hobbies" class="label">hobbies</label>
+          <input id="hobbies" type="text" v-model="website" class="input"/>
+        </div>
+      </div>
+      <div>
+        <h2>Interessen</h2>
+        <div class="flex">
+          <label for="interessen" class="label">passwort</label>
+          <input id="interessen" type="text" v-model="website" class="input"/>
+        </div>
+      </div>
     </div>
 
 
@@ -113,3 +119,46 @@ async function updateProfile() {
   </form>
   </article>
 </template>
+
+<style scoped>
+.format {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-widget{
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.form-widget div{
+  margin-bottom: 10px;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;}
+
+.label {
+  font-family: 'Roboto', sans-serif;
+  color: #211230;
+  font-size: 18px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: none;
+}
+
+</style>
