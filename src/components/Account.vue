@@ -73,7 +73,7 @@ async function updateProfile() {
   <form class="form-widget" @submit.prevent="updateProfile">
       <div class="flex">
           <label for="email" class="label">Email</label>
-          <input id="email" type="text" v-model="email" class="input" disabled />
+          <input id="email" type="text" v-model="email" class="input"/>
       </div>
       <div class="flex">
           <label for="vorname" class="label">Vorame</label>

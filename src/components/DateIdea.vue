@@ -22,7 +22,7 @@ watch(() => route.params.id, (newId, oldId) => {
       console.error(data.error)
       return null
     }
-    idea.value = data.data
+    idea.value = data.data[0]
   })
 })
 
@@ -40,7 +40,7 @@ function updateDateIdea() {
       console.error(data.error)
       return null
     }
-    idea.value = data.data
+    idea.value = data.data[0]
   })
 }
 
