@@ -98,7 +98,7 @@ getCachedSearch();
 
   <MultiStep :steps="registerSteps" @all-steps-complete="handleFilterComplete" v-if="!isComplete"/>
 
-  <article class="format" v-else>
+  <main class="format" v-else>
     <h1>Das sind die Top auswahlen für dein Date</h1>
     <p>Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am besten passende zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht durchgeführt hast.</p>
 
@@ -124,23 +124,31 @@ getCachedSearch();
         </RouterLink>
       </section>
     </article>
-  </article>
+  </main>
 </template>
 
 <style scoped>
+.format{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .results-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
   width: 100%;
 }
 
 .cardNotClick {
   background-color: #fefafd;
   padding: 10px 20px;
-  margin: 20px;
   font-family: 'poppins bold', sans-serif;
-  width: 30%;
+  width: calc(33% - 40px);
 
   display: flex;
   flex-direction: column;
@@ -151,6 +159,7 @@ getCachedSearch();
   box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
   cursor: pointer;
 }
+
 
 .cardNotClick:hover {
   transform: scale(1.05);

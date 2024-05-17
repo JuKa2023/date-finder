@@ -1,7 +1,15 @@
 <template>
   <div>
-    <h1>Date Idea with id: {{ id }}</h1>
-    <p>{{ idea }}</p>
+    <article class="idea" v-if="idea">
+      <div class="date">
+        <h2>{{idea.title}}</h2>
+        <p>{{idea.description}}</p>
+      </div>
+      <div class="image">
+        <img :src="idea.image" alt="Date Idea Image">
+      </div>
+    </article>
+    <p v-else> Loading...</p>
   </div>
 </template>
 
@@ -48,5 +56,28 @@ updateDateIdea()
 </script>
 
 <style scoped>
+.idea{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 4px;
+  gap: 20px;
+
+}
+
+.date{
+  width: 70%;
+}
+
+.image{
+  width: 30%;
+}
+
+.image img{
+  width: 100%;
+}
 
 </style>
