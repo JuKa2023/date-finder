@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { get_user } from "@/authentication";
 import {supabase} from "@/supabase";
 import {useRouter} from "vue-router";
@@ -8,10 +8,6 @@ const router = useRouter()
 
 const name = ref('')
 const is_logged_in = ref(false)
-
-onMounted(async () => {
-  console.log('Hello World, this is the App Page')
-})
 
 supabase.auth.onAuthStateChange(async (event) => {
   if (event === 'SIGNED_OUT') {

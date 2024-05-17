@@ -11,11 +11,11 @@ import {ref} from "vue";
 import {supabase} from "@/supabase";
 
 const registerSteps = [
-  { name: 'StepOne', path: '@/components/search', component: StepOne},
-  { name: 'StepTwo', path: '@/components/search', component: StepTwo },
-  { name: 'StepThree', path: '@/components/search', component: StepThree },
-  { name: 'StepFour', path: '@/components/search', component: StepFour },
-  { name: 'StepFive', path: '@/components/search', component: StepFive }
+  {name: 'StepOne', path: '@/components/search', component: StepOne},
+  {name: 'StepTwo', path: '@/components/search', component: StepTwo},
+  {name: 'StepThree', path: '@/components/search', component: StepThree},
+  {name: 'StepFour', path: '@/components/search', component: StepFour},
+  {name: 'StepFive', path: '@/components/search', component: StepFive}
 ];
 
 const isComplete = ref(false);
@@ -93,17 +93,20 @@ getCachedSearch();
 </script>
 
 <template>
-  <button @click="clearSearch"
-          v-if="isComplete">Clear Search</button>
+  <button v-if="isComplete"
+          @click="clearSearch">Clear Search
+  </button>
 
-  <MultiStep :steps="registerSteps" @all-steps-complete="handleFilterComplete" v-if="!isComplete"/>
+  <MultiStep v-if="!isComplete" :steps="registerSteps" @all-steps-complete="handleFilterComplete"/>
 
   <main class="format" v-else>
     <h1>Das sind die Top auswahlen für dein Date</h1>
-    <p>Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am besten passende zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht durchgeführt hast.</p>
+    <p>Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am besten passende
+      zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht durchgeführt hast.</p>
 
     <section class="chips">
-      <div class="chip" v-for="restriction in searchTags" :key="restriction.id" @click="removeRestriction(restriction.id)">
+      <div v-for="restriction in searchTags" :key="restriction.id" class="chip"
+           @click="removeRestriction(restriction.id)">
         <span>{{ restriction }}</span>
       </div>
     </section>
@@ -165,7 +168,7 @@ getCachedSearch();
   transform: scale(1.05);
 }
 
-.flexInCard{
+.flexInCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,7 +191,7 @@ getCachedSearch();
   border: #7A798C 1px solid;
   border-radius: 25px;
   background-color: #ffffff;
-  margin: 2px; /* Changed to pointer to indicate clickability */
+  margin: 2px;
   color: #7A798C;
 }
 
@@ -196,10 +199,9 @@ getCachedSearch();
   margin-bottom: 0;
 }
 
-/* Ensure the images are responsive and do not overflow their containers */
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 10px; /* Optional: if you want rounded corners on images */
+  border-radius: 10px;
 }
 </style>
