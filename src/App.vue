@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { get_user } from "@/authentication";
+import {ref} from 'vue'
+import {get_user} from "@/authentication";
 import {supabase} from "@/supabase";
 import {useRouter} from "vue-router";
 
@@ -35,37 +35,37 @@ async function handle_logout() {
 </script>
 
 <template>
-<header>
+  <header>
     <div class="containerheader">
       <nav>
         <ul>
           <li class="dropdown">
-            <a href="/"><img class="iconheader" src="/img/logo_datefinderr.svg" alt="Home"></a>
+            <a href="/"><img alt="Home" class="iconheader" src="/img/logo_datefinderr.svg"></a>
             <div class="dropdown-content">
-              <RouterLink to="find">Date suchen </RouterLink>
+              <RouterLink to="find">Date suchen</RouterLink>
 
             </div>
           </li>
           <li class="dropdown">
-            <a href="/"><img class="iconheader" src="/img/icon_konto.svg" alt="Konto"></a>
-            <div class="dropdown-content" v-if="is_logged_in">
-              <RouterLink to="Account">Mein Konto</RouterLink>
+            <a href="/"><img alt="Konto" class="iconheader" src="/img/icon_konto.svg"></a>
+            <div v-if="is_logged_in" class="dropdown-content">
+              <RouterLink to="/account">Mein Konto</RouterLink>
               <a @click="handle_logout">Logout</a>
             </div>
-            <div class="dropdown-content" v-else>
-              <RouterLink to="login">Login</RouterLink>
-              <RouterLink to="register">Registrieren</RouterLink>
+            <div v-else class="dropdown-content">
+              <RouterLink to="/login">Login</RouterLink>
+              <RouterLink to="/register">Registrieren</RouterLink>
             </div>
           </li>
         </ul>
       </nav>
     </div>
     <hr class="faint-line">
-</header>
+  </header>
 
-<main>
-  <router-view></router-view>
-</main>
+  <main>
+    <router-view></router-view>
+  </main>
 
 </template>
 
@@ -121,7 +121,7 @@ nav ul li a:hover {
   display: none;
   position: absolute;
   background-color: #100a15;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   width: 200px;
 }
@@ -134,7 +134,7 @@ nav ul li a:hover {
 }
 
 .dropdown-content a:hover {
-  color:#EBCFCD ;
+  color: #EBCFCD;
 }
 
 .dropdown:hover .dropdown-content {
@@ -142,7 +142,7 @@ nav ul li a:hover {
 }
 
 nav ul li:last-child .dropdown-content {
-  right: 0;  
+  right: 0;
 }
 
 .faint-line {

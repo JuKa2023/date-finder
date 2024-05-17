@@ -9,7 +9,7 @@ import StepFour from "@/components/search/steps/StepFour.vue";
 import StepFive from "@/components/search/steps/StepFive.vue";
 import {ref} from "vue";
 import {supabase} from "@/supabase";
-import DateCard from "@/components/DateCard.vue";
+import DateList from "@/components/search/DateList.vue";
 
 const registerSteps = [
   {name: 'StepOne', path: '@/components/search', component: StepOne},
@@ -70,7 +70,13 @@ async function updateSearchResults() {
     console.error(ideas.error);
     return;
   }
-  console.log(ideas.data);
+
+  // TODO: Remove ugly hack
+  ideas.data.forEach((idea) => {
+    idea.id = idea.idea_id;
+    delete idea.idea_id;
+  });
+
   results.value = ideas.data;
 }
 
@@ -100,7 +106,7 @@ getCachedSearch();
 
   <MultiStep v-if="!isComplete" :steps="registerSteps" @all-steps-complete="handleFilterComplete"/>
 
-  <main class="format" v-else>
+  <main v-else class="format">
     <h1>Das sind die Top auswahlen für dein Date</h1>
     <p>Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am besten passende
       zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht durchgeführt hast.</p>
@@ -111,48 +117,17 @@ getCachedSearch();
         <span>{{ restriction }}</span>
       </div>
     </section>
-
-    <article class="results-container">
-      <DateCard v-for="result in results" :key="result.id" :date_object="result" class="cardNotClick"/>
-    </article>
+    
+    <DateList :date_objects="results"/>
   </main>
 </template>
 
 <style scoped>
-.cardNotClick {
-  background-color: #fefafd;
-  padding: 10px 20px;
-  font-family: 'poppins bold', sans-serif;
-  width: calc(33% - 40px);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  border-radius: 4px;
-  box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
-  cursor: pointer;
-}
-
-.cardNotClick:hover {
-  transform: scale(1.05);
-}
-
-.format{
+.format {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-}
-
-.results-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 20px;
-  width: 100%;
 }
 
 .chips {

@@ -1,5 +1,6 @@
 <script>
 export default {
+  name: 'DateCard',
   props: {
     date_object: {
       type: Object,
@@ -11,21 +12,44 @@ export default {
 </script>
 
 <template>
-  <RouterLink :to="{name: 'idea', params: {id: date_object.idea_id}}">
-    <div class="flexInCard">
-      <h3 class="activity">{{ date_object.title }}</h3>
-      <p>{{ date_object.description }}</p>
-    </div>
-    <img :src="date_object.imageUrl" alt="illustration der Aktivität">
-    <div class="chips">
-      <div v-for="tag in date_object.tags" :key="tag" class="chip">
-        <span>{{ tag }}</span>
+  <span class="cardNotClick">
+    <RouterLink :to="{name: 'idea', params: {id: date_object.id}}">
+      <div class="flexInCard">
+        <h3 class="activity">{{ date_object.title }}</h3>
+        <p>{{ date_object.description }}</p>
       </div>
-    </div>
-  </RouterLink>
+      <img :src="date_object.imageUrl" alt="illustration der Aktivität">
+      <div class="chips">
+        <div v-for="tag in date_object.tags" :key="tag" class="chip">
+          <span>{{ tag }}</span>
+        </div>
+      </div>
+    </RouterLink>
+  </span>
+
 </template>
 
 <style>
+.cardNotClick {
+  background-color: #fefafd;
+  padding: 10px 20px;
+  font-family: 'poppins bold', sans-serif;
+  width: calc(33% - 40px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
+  cursor: pointer;
+}
+
+.cardNotClick:hover {
+  transform: scale(1.05);
+}
+
 .flexInCard {
   display: flex;
   flex-direction: column;

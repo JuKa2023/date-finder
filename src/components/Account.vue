@@ -2,6 +2,7 @@
 import {supabase} from '@/supabase'
 import {onMounted, ref} from 'vue'
 import {get_user} from "@/authentication";
+import DateList from "@/components/search/DateList.vue";
 
 const loading = ref(true)
 
@@ -27,18 +28,15 @@ async function updateSavedLikedIdeas(userId) {
                 idea_id,
                 liked,
                 saved,
-                idea (
-                    id,
-                    title,
-                    description,
-                    image_url
-                )
+                idea (*)
             `)
       .eq('profile_id', userId);
 
   if (error) throw error;
-  savedIdeas.value = data.filter(item => item.saved);
-  likedIdeas.value = data.filter(item => item.liked);
+
+  savedIdeas.value = data.filter(item => item.saved).map(item => item.idea);
+  likedIdeas.value = data.filter(item => item.liked).map(item => item.idea);
+  console.log("savedIdeas ref")
 }
 
 async function getProfile() {
@@ -128,23 +126,11 @@ async function updateProfile() {
       </div>
     </form>
 
-    <section>
-      <h2>Gemochte Ideen</h2>
-      <ul>
-        <li v-for="item in likedIdeas" :key="item.idea_id">
-          <strong>{{ item.idea.title }}</strong> - {{ item.idea.description }}
-        </li>
-      </ul>
+    <section class="format">
+      <h2>Gespeicherte Ideen</h2>
+      <DateList :date_objects="savedIdeas"/>
     </section>
 
-    <section>
-      <h2>Gespeicherte Ideen</h2>
-      <ul>
-        <li v-for="item in savedIdeas" :key="item.idea_id">
-          <strong>{{ item.idea.title }}</strong> - {{ item.idea.description }}
-        </li>
-      </ul>
-    </section>
   </article>
 </template>
 

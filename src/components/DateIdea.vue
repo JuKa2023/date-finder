@@ -117,7 +117,7 @@ async function updateProfileIdea(ideaId, profileId, field, value) {
         <h2>{{ idea.title }}</h2>
         <p>{{ idea.description }}</p>
 
-        <button class="shadow-button" @click="toggleLikeIdea">{{ isLiked ? 'Unlike' : 'Like' }}</button>
+        <!-- <button class="shadow-button" @click="toggleLikeIdea">{{ isLiked ? 'Unlike' : 'Like' }}</button> -->
         <button class="shadow-button" @click="toggleSaveIdea">{{ isSaved ? 'Unsave' : 'Save' }}</button>
       </div>
       <div class="image">
