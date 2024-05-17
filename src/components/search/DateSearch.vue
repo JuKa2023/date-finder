@@ -9,6 +9,7 @@ import StepFour from "@/components/search/steps/StepFour.vue";
 import StepFive from "@/components/search/steps/StepFive.vue";
 import {ref} from "vue";
 import {supabase} from "@/supabase";
+import DateCard from "@/components/DateCard.vue";
 
 const registerSteps = [
   {name: 'StepOne', path: '@/components/search', component: StepOne},
@@ -112,41 +113,12 @@ getCachedSearch();
     </section>
 
     <article class="results-container">
-      <section v-for="result in results" :key="result.id" class="cardNotClick">
-        <RouterLink :to="{name: 'idea', params: {id: result.idea_id}}">
-          <div class="flexInCard">
-            <h3 class="activity">{{ result.title }}</h3>
-            <p>{{ result.description }}</p>
-          </div>
-          <img :src="result.imageUrl" alt="illustration der Aktivität">
-          <div class="chips">
-            <div v-for="tag in result.tags" :key="tag" class="chip">
-              <span>{{ tag }}</span>
-            </div>
-          </div>
-        </RouterLink>
-      </section>
+      <DateCard v-for="result in results" :key="result.id" :date_object="result" class="cardNotClick"/>
     </article>
   </main>
 </template>
 
 <style scoped>
-.format{
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.results-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 20px;
-  width: 100%;
-}
-
 .cardNotClick {
   background-color: #fefafd;
   padding: 10px 20px;
@@ -163,16 +135,24 @@ getCachedSearch();
   cursor: pointer;
 }
 
-
 .cardNotClick:hover {
   transform: scale(1.05);
 }
 
-.flexInCard {
+.format{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.results-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .chips {
@@ -195,13 +175,4 @@ getCachedSearch();
   color: #7A798C;
 }
 
-.activity {
-  margin-bottom: 0;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
 </style>
