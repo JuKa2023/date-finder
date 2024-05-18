@@ -1,4 +1,5 @@
 <script>
+
 export default {
   name: 'DateCard',
   props: {
@@ -6,8 +7,18 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    imageUrl() {
+      const baseURL = '/img/date/';
+      const url = baseURL + this.date_object.id + '.jpg';
+
+      console.log(url);
+      return url;
+    }
   }
 }
+
 
 </script>
 
@@ -16,9 +27,9 @@ export default {
     <RouterLink :to="{name: 'idea', params: {id: date_object.id}}">
       <div class="flexInCard">
         <h3 class="activity">{{ date_object.title }}</h3>
-        <p>{{ date_object.description }}</p>
+        <img :src="imageUrl" alt="illustration der Aktivität">
       </div>
-      <img :src="date_object.imageUrl" alt="illustration der Aktivität">
+
       <div class="chips">
         <div v-for="tag in date_object.tags" :key="tag" class="chip">
           <span>{{ tag }}</span>
@@ -55,6 +66,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 }
 
 .chips {
@@ -84,6 +96,5 @@ export default {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
 }
 </style>

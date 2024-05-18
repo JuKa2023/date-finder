@@ -113,16 +113,17 @@ async function updateProfileIdea(ideaId, profileId, field, value) {
   <div>
 
     <article v-if="idea" class="idea">
-      <div class="date">
-        <h2>{{ idea.title }}</h2>
-        <p>{{ idea.description }}</p>
-
-        <!-- <button class="shadow-button" @click="toggleLikeIdea">{{ isLiked ? 'Unlike' : 'Like' }}</button> -->
-        <button class="shadow-button" @click="toggleSaveIdea">{{ isSaved ? 'Unsave' : 'Save' }}</button>
+      <div class="ideaLayout">
+        <div class="date">
+          <h2>{{ idea.title }}</h2>
+          <p>{{ idea.description }}</p>
+        </div>
+        <div class="image">
+          <img :src="idea.image" alt="Date Idea Image">
+        </div>
       </div>
-      <div class="image">
-        <img :src="idea.image" alt="Date Idea Image">
-      </div>
+      <button class="shadow-button" @click="toggleSaveIdea">{{ isSaved ? 'Unsave' : 'Save' }}</button>
+      <!-- <button class="shadow-button" @click="toggleLikeIdea">{{ isLiked ? 'Unlike' : 'Like' }}</button> -->
     </article>
     <p v-else> Loading...</p>
   </div>
@@ -134,12 +135,21 @@ async function updateProfileIdea(ideaId, profileId, field, value) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   margin: 1rem;
   padding: 1rem;
   background-color: #ffffff;
   border-radius: 4px;
   gap: 20px;
 
+}
+
+.ideaLayout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .date {

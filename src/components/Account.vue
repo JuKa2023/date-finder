@@ -1,7 +1,8 @@
 <script setup>
 import {supabase} from '@/supabase'
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, watchEffect} from 'vue'
 import {get_user} from "@/authentication";
+
 import DateList from "@/components/search/DateList.vue";
 
 const loading = ref(true)
@@ -12,6 +13,8 @@ const firstName = ref('')
 const avatar_url = ref('')
 const password = ref('')
 const restrictions = ref('')
+
+const isModified = ref(false);
 
 const savedIdeas = ref([])
 const likedIdeas = ref([])
@@ -88,43 +91,57 @@ async function updateProfile() {
     loading.value = false
   }
 }
+
+//detect changes and enable Button
+
+watchEffect(() => {
+  isModified.value = email.value !== '' || username.value !== '' || firstName.value !== '' || password.value !== '' || restrictions.value !== '';
+});
+
+function handleChange() {
+  isModified.value = true;
+}
+
 </script>
 
 <template>
   <article class="format">
     <h1>Konto-Einstellungen</h1>
-    <form class="form-widget" @submit.prevent="updateProfile">
-      <div class="field">
-        <label class="label" for="email">E-Mail</label>
-        <input id="email" v-model="email" class="input" disabled type="email"/>
-      </div>
+    <div class="formatKonto">
+      <form class="form-widget" @submit.prevent="updateProfile">
+        <div class="field">
+          <label class="label" for="email">E-Mail:</label>
+          <input id="email" v-model="email" class="input" disabled type="email" @input="handleChange"/>
+        </div>
 
-      <div class="field">
-        <label class="label" for="username">Benutzername</label>
-        <input id="username" v-model="username" class="input" type="text"/>
-      </div>
+        <div class="field">
+          <label class="label" for="username">Benutzername:</label>
+          <input id="username" v-model="username" class="input" type="text" @input="handleChange"/>
+        </div>
 
-      <div class="field">
-        <label class="label" for="vorname">Vorname</label>
-        <input id="firstName" v-model="firstName" class="input" type="text"/>
-      </div>
+        <div class="field">
+          <label class="label" for="vorname">Vorname:</label>
+          <input id="firstName" v-model="firstName" class="input" type="text" @input="handleChange"/>
+        </div>
 
-      <div class="field">
-        <label class="label" for="password">Passwort</label>
-        <input id="password" v-model="password" class="input" type="password"/>
-      </div>
+        <div class="field">
+          <label class="label" for="password">Passwort:</label>
+          <input id="password" v-model="password" class="input" type="password" @input="handleChange"/>
+        </div>
 
-      <div class="field">
-        <label class="label" for="restrictions">Einschränkungen</label>
-        <input id="restrictions" v-model="restrictions" class="input" type="text"/>
-      </div>
+        <div class="field">
+          <label class="label" for="restrictions">Einschränkungen:</label>
+          <input id="restrictions" v-model="restrictions" class="input" type="text" @input="handleChange"/>
+        </div>
 
-      <div class="field">
-        <button :disabled="loading" class="button primary" type="submit">
-          {{ loading ? 'Aktualisieren...' : 'Profil aktualisieren' }}
-        </button>
-      </div>
-    </form>
+        <div class="field">
+          <button v-if="isModified" :disabled="loading" class="button primary " type="submit">
+            {{ loading ? 'Aktualisieren...' : 'Profil aktualisieren' }}
+          </button>
+        </div>
+      </form>
+      <img src="/img/platzhalter.png">
+    </div>
 
     <section class="format">
       <h2>Gespeicherte Ideen</h2>
@@ -151,30 +168,41 @@ async function updateProfile() {
   border-radius: 4px;
 }
 
-.form-widget div {
+.form-widget div.field {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items vertically in the center */
   margin-bottom: 10px;
 }
 
-.flex {
+.formatKonto {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  gap: 20px;
+  width: 100%;
 }
 
 .label {
+  width: 150px;
   font-family: 'Roboto', sans-serif;
   color: #211230;
   font-size: 18px;
-  margin-bottom: 5px;
   margin-right: 10px;
 }
 
 .input {
-  width: 100%;
+  flex-grow: 1;
   padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 4px;
+  background-color: transparent;
   border: none;
+  border-radius: 4px;
+  color: #211230;
+  font-size: 18px;
+}
+
+.input:focus {
+  background-color: #ffffff;
+  border-color: #D77F8F
 }
 
 </style>
