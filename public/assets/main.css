@@ -6,13 +6,15 @@ h1, h2, h3 {
 
 }
 
-h1{
+h1 {
     font-size: 48px;
 }
-h2{
+
+h2 {
     font-size: 36px;
 }
-h3{
+
+h3 {
     font-size: 24px;
 }
 
@@ -22,17 +24,17 @@ p {
     font-size: 18px;
 }
 
-span{
+span {
     font-family: 'Roboto', sans-serif;
 }
 
-main{
-  padding-top: 50px;
+main {
+    padding-top: 50px;
     width: 1000px;
     margin: auto;
 }
 
-body{
+body {
     margin: 0;
     background-color: #E5BABA;
 }
@@ -49,25 +51,24 @@ body{
     border-radius: 4px;
     box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
     cursor: pointer;
+    border-bottom: 3px solid #ea0505
 }
 
-.shadow-button:hover{
+.shadow-button:hover {
     transform: scale(1.05);
 }
 
 
-
-
 /* Stepper Option Date */
 
-.content-container{
+.content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.options-container{
+.options-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -75,7 +76,7 @@ body{
     width: 100%;
 }
 
-.cardClickable{
+.cardClickable {
     background-color: #fefafd;
     margin: 20px;
     font-family: 'poppins bold', sans-serif;
@@ -91,7 +92,7 @@ body{
     cursor: pointer;
 }
 
-.top{
+.top {
     padding: 10px 20px;
 
     display: flex;
@@ -105,8 +106,7 @@ body{
 }
 
 
-
-.farbbox{
+.farbbox {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -117,13 +117,13 @@ body{
     background-color: #405983;
 }
 
-.farbbox img{
+.farbbox img {
     height: 100%;
 }
 
 
 .format {
-    width:calc(100% - 20px);
+    width: calc(100% - 20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -134,10 +134,11 @@ body{
 
 }
 
-    .activity{
+.activity {
     margin-bottom: 0;
 }
-.Bildcard{
+
+.Bildcard {
     margin: 10px;
     max-width: 80%;
 }
