@@ -10,8 +10,8 @@ export default {
   },
   computed: {
     imageUrl() {
-      const baseURL = '/img/date/';
-      const url = baseURL + this.date_object.id + '.jpg';
+      const baseURL = '/img/dates/';
+      const url = baseURL + this.date_object.id + '.webp';
 
       console.log(url);
       return url;
@@ -23,6 +23,7 @@ export default {
 </script>
 
 <template>
+
   <span class="cardNotClick">
     <RouterLink :to="{name: 'idea', params: {id: date_object.id}}">
       <div class="flexInCard">
@@ -38,14 +39,17 @@ export default {
     </RouterLink>
   </span>
 
+
 </template>
 
 <style>
+
+
 .cardNotClick {
   background-color: #fefafd;
   padding: 10px 20px;
   font-family: 'poppins bold', sans-serif;
-  width: calc(33% - 40px);
+  width: calc(33% - 60px);
 
   display: flex;
   flex-direction: column;
@@ -91,6 +95,7 @@ export default {
 
 .activity {
   margin-bottom: 0;
+  hyphens: auto;
 }
 
 img {

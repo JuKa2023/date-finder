@@ -21,6 +21,7 @@ export default {
 </template>
 
 <style scoped>
+
 .results-container {
   display: flex;
   flex-direction: row;
