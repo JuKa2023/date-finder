@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+h1,
+h2,
+h3 {
+	font-family: 'Fredoka One', sans-serif;
+	color: #211230;
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+p {
+	font-family: 'Roboto', sans-serif;
+	color: #211230;
+	font-size: 18px;
+}
+
+span {
+	font-family: 'Roboto', sans-serif;
+}
+
+main {
+	padding-top: 50px;
+	width: 1000px;
+	margin: auto;
+}
+
+body {
+	margin: 0;
+	background-color: #e5baba;
+}
+
+.shadow-button {
+	border: none;
+	background-color: #fefafd;
+	margin: 18px;
+	font-family: 'poppins bold', sans-serif;
+	font-size: 18px;
+	width: 20%;
+	padding: 10px 20px;
+
+	border-radius: 4px;
+	box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
+	cursor: pointer;
+	border-bottom: 3px solid #ea0505;
+}
+
+.shadow-button:hover {
+	transform: scale(1.05);
+}
+
+/* Stepper Option Date */
+
+.content-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.options-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.cardClickable {
+	background-color: #fefafd;
+	margin: 20px;
+	font-family: 'poppins bold', sans-serif;
+	width: 20%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 4px;
+	box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
+	cursor: pointer;
+}
+
+.top {
+	padding: 10px 20px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.cardClickable:hover {
+	transform: scale(1.05);
+}
+
+.farbbox {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 20px;
+	width: calc(100% - 20px);
+	padding: 10px 10px;
+	background-color: #405983;
+}
+
+.farbbox img {
+	height: 100%;
+}
+
+.format {
+	width: calc(100% - 20px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 0 10px;
+}
+
+.activity {
+	margin-bottom: 0;
+}
+
+.bildCard {
+	margin: 10px;
+	max-width: 80%;
+}

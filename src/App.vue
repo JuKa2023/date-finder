@@ -1,156 +1,204 @@
 <script setup>
-import {ref} from 'vue'
-import {get_user} from "@/authentication";
-import {supabase} from "@/supabase";
-import {useRouter} from "vue-router";
+import { ref, computed } from 'vue'
+import { supabase } from '@/supabase'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
-const name = ref('')
 const is_logged_in = ref(false)
+const isLoggedIn = computed(() => is_logged_in.value)
 
 supabase.auth.onAuthStateChange(async (event) => {
-  if (event === 'SIGNED_OUT') {
-    console.log('User signed out event detected in App.vue')
-    is_logged_in.value = false
-    name.value = ''
-  } else if (event === 'SIGNED_IN') {
-    is_logged_in.value = true
-    const user = get_user();
-    name.value = user.name
-  }
+	if (event === 'SIGNED_OUT') {
+		is_logged_in.value = false
+	} else if (event === 'SIGNED_IN') {
+		is_logged_in.value = true
+	}
 })
 
 async function handle_logout() {
-  const {error} = await supabase.auth.signOut()
-  console.log(error)
-
-  if (!error) {
-    is_logged_in.value = false
-    name.value = ''
-    await router.push('/login')
-  }
+	const { error } = await supabase.auth.signOut()
+	console.log(error)
+	if (!error) {
+		is_logged_in.value = false
+		await router.push('/login')
+	}
 }
-
 </script>
 
 <template>
-  <header>
-    <div class="containerheader">
-      <nav>
-        <ul>
-          <li class="dropdown">
-            <a href="/"><img alt="Home" class="iconheader" src="/img/logo_datefinderr.svg"></a>
-            <div class="dropdown-content">
-              <RouterLink to="find">Date suchen</RouterLink>
+	<header>
+		<div class="containerheader">
+			<nav>
+				<ul>
+					<li class="dropdown">
+						<a href="/date-finder/" aria-haspopup="true" aria-expanded="false">
+							<img alt="Home" class="iconHeader home-icon" src="/src/assets/img/logo.svg" />
+						</a>
+						<div v-if="isLoggedIn" class="dropdown-content" aria-labelledby="homeMenu">
+							<RouterLink to="find">Date suchen</RouterLink>
+						</div>
+					</li>
+					<li class="dropdown" v-if="isLoggedIn">
+						<a href="/date-finder/" aria-haspopup="true" aria-expanded="false">
+							<img
+								alt="Konto"
+								class="iconHeader account-icon"
+								src="/src/assets/img/icons/konto.svg"
+							/>
+						</a>
+						<div v-if="isLoggedIn" class="dropdown-content" aria-labelledby="accountMenu">
+							<RouterLink to="/account">Mein Konto</RouterLink>
+							<a @click.prevent="handle_logout">Logout</a>
+						</div>
+						<div v-else class="dropdown-content" aria-labelledby="loginMenu">
+							<RouterLink to="/login">Login</RouterLink>
+							<RouterLink to="/register">Registrieren</RouterLink>
+						</div>
+					</li>
+					<li v-else>
+						<RouterLink to="/login" class="linkOnly">Login</RouterLink>
+						<RouterLink to="/register" class="linkOnly">Registrieren</RouterLink>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<hr class="faint-line" />
+	</header>
 
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="/"><img alt="Konto" class="iconheader" src="/img/icon_konto.svg"></a>
-            <div v-if="is_logged_in" class="dropdown-content">
-              <RouterLink to="/account">Mein Konto</RouterLink>
-              <a @click="handle_logout">Logout</a>
-            </div>
-            <div v-else class="dropdown-content">
-              <RouterLink to="/login">Login</RouterLink>
-              <RouterLink to="/register">Registrieren</RouterLink>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <hr class="faint-line">
-  </header>
-
-  <main>
-    <router-view></router-view>
-  </main>
-
+	<main>
+		<router-view></router-view>
+	</main>
 </template>
 
 <style scoped>
 header {
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-family: 'Poppins', sans-serif;
-  background-color: #E5BABA;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: 'Poppins', sans-serif;
+	background-color: #d79595;
+	position: sticky; /* Make header sticky */
+	top: 0; /* Position it at the top of the viewport */
+	z-index: 1000; /* Ensure it stays on top of other content */
 }
 
 nav ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style-type: none;
-  padding: 0 10px;
-  margin-top: 10px;
-  margin-bottom: 0px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	list-style-type: none;
+	padding: 0 10px;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 nav ul li {
-  position: relative;
-  margin-right: 10px;
-  font-size: 18px;
+	position: relative;
+	margin-right: 10px;
+	font-size: 18px;
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: #D0A8C5;
-  display: flex;
-  align-items: center;
+	text-decoration: none;
+	color: #d0a8c5;
+	display: flex;
+	align-items: center;
 }
 
+nav ul li a:focus,
 nav ul li a:hover {
-  color: #EBCFCD;
+	color: #ebcfcd;
+	outline: none;
 }
 
-.iconheader {
-  height: 30px;
-  padding-bottom: 10px;
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.iconHeader {
+	padding-bottom: 10px;
+	transition: transform 0.6s ease;
+	transform-origin: center;
+}
+
+.iconHeader:hover {
+	transform: rotate(360deg);
+}
+
+.home-icon {
+	height: 40px;
+}
+
+.account-icon {
+	height: 25px;
+	transition: none;
 }
 
 .containerheader {
-  max-width: 1000px;
-  margin: 0 auto;
-  width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	width: 100%;
 }
 
-/* Dropdown Menu Styles */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #100a15;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  width: 200px;
-}
-
-.dropdown-content a {
-  color: #D0A8C5;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  color: #EBCFCD;
+	display: block;
+	position: absolute;
+	background-color: #29223c;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	width: 200px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-20px);
+	transition:
+		opacity 0.5s ease,
+		transform 0.5s ease,
+		visibility 0.5s;
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0px);
+}
+
+.dropdown-content a {
+	color: #d0a8c5;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	cursor: pointer;
+}
+
+.dropdown-content a:focus,
+.dropdown-content a:hover {
+	color: #ebcfcd;
+	background-color: #2a2130;
 }
 
 nav ul li:last-child .dropdown-content {
-  right: 0;
+	right: 0;
 }
 
 .faint-line {
-  border: none;
-  height: 1px; /* You can adjust the height to your preference */
-  background-color: #211230; /* A light grey color with low opacity for faintness */
-  margin-top: 20px; /* Adjust the margin to control spacing above the line */
-  margin-bottom: 20px; /* Adjust the margin to control spacing below the line */
+	border: none;
+	height: 1px;
+	background-color: #211230;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
+.linkOnly {
+	color: black;
+	text-decoration: none;
+}
+
+.linkOnly:hover {
+	color: #ebcfcd;
+}
 </style>

@@ -1,9 +1,8 @@
 <script setup>
-import {supabase} from '@/supabase'
-import {onMounted, ref, watchEffect} from 'vue'
-import {get_user} from "@/authentication";
-
-import DateList from "@/components/search/DateList.vue";
+import { supabase } from '@/supabase'
+import { onMounted, ref, watchEffect } from 'vue'
+import { get_user } from '@/authentication'
+import { useToast } from 'vue-toastification'
 
 const loading = ref(true)
 
@@ -14,195 +13,192 @@ const avatar_url = ref('')
 const password = ref('')
 const restrictions = ref('')
 
-const isModified = ref(false);
-
-const savedIdeas = ref([])
-const likedIdeas = ref([])
+const isModified = ref(false)
 
 onMounted(async () => {
-  await getProfile()
+	await getProfile()
 })
 
-
-async function updateSavedLikedIdeas(userId) {
-  const {data, error} = await supabase
-      .from('profiles_ideas')
-      .select(`
-                idea_id,
-                liked,
-                saved,
-                idea (*)
-            `)
-      .eq('profile_id', userId);
-
-  if (error) throw error;
-
-  savedIdeas.value = data.filter(item => item.saved).map(item => item.idea);
-  likedIdeas.value = data.filter(item => item.liked).map(item => item.idea);
-  console.log("savedIdeas ref")
-}
-
 async function getProfile() {
-  try {
-    const user = await get_user();
+	try {
+		const user = await get_user()
+		const { data, error, status } = await supabase
+			.from('profiles')
+			.select()
+			.eq('id', user.id)
+			.single()
 
-    const {data, error, status} = await supabase
-        .from('profiles')
-        .select()
-        .eq('id', user.id)
-        .single()
+		if (error && status !== 406) throw error
 
-    if (error && status !== 406) throw error
-
-    if (data) {
-      email.value = user.email
-      firstName.value = data.full_name
-      username.value = data.username
-      avatar_url.value = data.avatar_url
-    }
-
-    await updateSavedLikedIdeas(user.id)
-  } catch (error) {
-    alert(error.message)
-  } finally {
-    loading.value = false
-  }
+		if (data) {
+			email.value = user.email
+			firstName.value = data.full_name
+			username.value = data.username
+			avatar_url.value = data.avatar_url
+		}
+	} catch (error) {
+		const toast = useToast()
+		toast.error(error.message, {
+			timeout: 5000,
+		})
+	} finally {
+		loading.value = false
+	}
 }
 
 async function updateProfile() {
-  try {
-    loading.value = true
-    const user = await get_user();
+	try {
+		loading.value = true
+		const user = await get_user()
 
-    const updates = {
-      id: user.id,
-      username: username.value,
-      full_name: firstName.value,
-      avatar_url: avatar_url.value,
-      updated_at: new Date()
-    }
+		const updates = {
+			id: user.id,
+			username: username.value,
+			full_name: firstName.value,
+			avatar_url: avatar_url.value,
+			updated_at: new Date(),
+		}
 
-    const {error} = await supabase.from('profiles').upsert(updates)
+		const { error } = await supabase.from('profiles').upsert(updates)
 
-    if (error) throw error
-  } catch (error) {
-    alert(error.message)
-  } finally {
-    loading.value = false
-  }
+		const toast = useToast()
+
+		if (!error) toast.success('Profil erfolgreich aktualisiert')
+		else toast.error('Fehler beim Aktualisieren des Profils')
+
+		if (error) throw error
+	} catch (error) {
+		alert(error.message)
+	} finally {
+		loading.value = false
+	}
 }
-
-//detect changes and enable Button
 
 watchEffect(() => {
-  isModified.value = email.value !== '' || username.value !== '' || firstName.value !== '' || password.value !== '' || restrictions.value !== '';
-});
+	isModified.value =
+		email.value !== '' ||
+		username.value !== '' ||
+		firstName.value !== '' ||
+		password.value !== '' ||
+		restrictions.value !== ''
+})
 
 function handleChange() {
-  isModified.value = true;
+	isModified.value = true
 }
-
 </script>
 
 <template>
-  <article class="format">
-    <h1>Konto-Einstellungen</h1>
-    <div class="formatKonto">
-      <form class="form-widget" @submit.prevent="updateProfile">
-        <div class="field">
-          <label class="label" for="email">E-Mail:</label>
-          <input id="email" v-model="email" class="input" disabled type="email" @input="handleChange"/>
-        </div>
-
-        <div class="field">
-          <label class="label" for="username">Benutzername:</label>
-          <input id="username" v-model="username" class="input" type="text" @input="handleChange"/>
-        </div>
-
-        <div class="field">
-          <label class="label" for="vorname">Vorname:</label>
-          <input id="firstName" v-model="firstName" class="input" type="text" @input="handleChange"/>
-        </div>
-
-        <div class="field">
-          <label class="label" for="password">Passwort:</label>
-          <input id="password" v-model="password" class="input" type="password" @input="handleChange"/>
-        </div>
-
-        <div class="field">
-          <label class="label" for="restrictions">Einschränkungen:</label>
-          <input id="restrictions" v-model="restrictions" class="input" type="text" @input="handleChange"/>
-        </div>
-
-        <div class="field">
-          <button v-if="isModified" :disabled="loading" class="button primary " type="submit">
-            {{ loading ? 'Aktualisieren...' : 'Profil aktualisieren' }}
-          </button>
-        </div>
-      </form>
-      <img src="/img/platzhalter.png">
-    </div>
-
-    <section class="format">
-      <h2>Gespeicherte Ideen</h2>
-      <DateList :date_objects="savedIdeas"/>
-    </section>
-
-  </article>
+	<article class="account-settings">
+		<h1>Konto-Einstellungen</h1>
+		<form class="settings-form" @submit.prevent="updateProfile">
+			<div class="input-group">
+				<label for="email">E-Mail:</label>
+				<input id="email" v-model="email" disabled type="email" />
+			</div>
+			<div class="input-group">
+				<label for="username">Benutzername:</label>
+				<input id="username" v-model="username" type="text" @input="handleChange" />
+			</div>
+			<div class="input-group">
+				<label for="firstName">Vorname:</label>
+				<input id="firstName" v-model="firstName" type="text" @input="handleChange" />
+			</div>
+			<div class="input-group">
+				<label for="password">Passwort:</label>
+				<input id="password" v-model="password" type="password" @input="handleChange" />
+			</div>
+			<div class="input-group">
+				<label for="restrictions">Einschränkungen:</label>
+				<input id="restrictions" v-model="restrictions" type="text" @input="handleChange" />
+			</div>
+			<button v-if="isModified" :disabled="loading" class="update-button">
+				{{ loading ? 'Aktualisieren...' : 'Profil aktualisieren' }}
+			</button>
+		</form>
+	</article>
 </template>
 
-
 <style scoped>
-.format {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+.account-settings {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	max-width: 600px;
+	margin: 50px auto;
+	padding: 30px;
+	background: linear-gradient(145deg, #ffffff, #f6f6f6);
+	border-radius: 12px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-.form-widget {
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 4px;
+.settings-form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
-.form-widget div.field {
-  display: flex; /* Use flexbox */
-  align-items: center; /* Align items vertically in the center */
-  margin-bottom: 10px;
+.input-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
 }
 
-.formatKonto {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  gap: 20px;
-  width: 100%;
-}
-
-.label {
-  width: 150px;
-  font-family: 'Roboto', sans-serif;
-  color: #211230;
-  font-size: 18px;
-  margin-right: 10px;
+label {
+	font-family: 'Roboto', sans-serif;
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 5px;
+	font-weight: 500;
 }
 
 .input {
-  flex-grow: 1;
-  padding: 10px;
-  background-color: transparent;
-  border: none;
-  border-radius: 4px;
-  color: #211230;
-  font-size: 18px;
+	padding: 12px;
+	border: 2px solid #dcdcdc;
+	border-radius: 6px;
+	background: white;
+	color: #333;
+	font-size: 16px;
+	transition: all 0.3s ease-in-out;
 }
 
 .input:focus {
-  background-color: #ffffff;
-  border-color: #D77F8F
+	border-color: #405983;
+	box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
 }
 
+.update-button {
+	padding: 12px 20px;
+	margin-top: 10px;
+	background-color: #405983;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	background-image: linear-gradient(45deg, #405983, #587abc);
+}
+
+.update-button:hover {
+	background-image: linear-gradient(45deg, #364b73, #4e6ca3);
+	transform: translateY(-3px);
+	box-shadow: 0 4px 10px rgba(54, 75, 115, 0.25);
+}
+
+.update-button:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+	opacity: 0.7;
+}
+
+.error-message {
+	color: #ff3860;
+	margin-top: 12px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+}
 </style>

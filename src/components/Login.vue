@@ -1,104 +1,148 @@
 <template>
-  <div class="login-container">
-    <form class="login-form" @submit.prevent="handleLogin">
-      <h1 class="login-header">Supabase + Vue 3</h1>
-      <label for="email">Email</label>
-      <input id="email" required type="email" placeholder="Enter your email" v-model="email" />
-
-      <label for="password">Password</label>
-      <input id="password" required type="password" placeholder="Enter your password" v-model="password" />
-
-      <button type="submit" :class="{'button-loading': loading}" :disabled="loading">
-        {{ loading ? 'Loading...' : 'Login' }}
-      </button>
-    </form>
-  </div>
+	<div class="login-container">
+		<form class="login-form" @submit.prevent="handleLogin">
+			<h1 class="login-header">Login to Your Account</h1>
+			<div class="input-group">
+				<label for="email">Email</label>
+				<input id="email" required type="email" placeholder="Enter your email" v-model="email" />
+			</div>
+			<div class="input-group">
+				<label for="password">Password</label>
+				<input
+					id="password"
+					required
+					type="password"
+					placeholder="Enter your password"
+					v-model="password"
+				/>
+			</div>
+			<button type="submit" :class="{ 'button-loading': loading }" :disabled="loading">
+				{{ loading ? 'Loading...' : 'Login' }}
+			</button>
+			<p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+		</form>
+	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { supabase } from "@/supabase";
-import { useRouter } from "vue-router";
+import { ref } from 'vue'
+import { supabase } from '@/supabase'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
-const router = useRouter();
-const loading = ref(false);
-const email = ref('');
-const password = ref('');
+const router = useRouter()
+const loading = ref(false)
+const email = ref('')
+const password = ref('')
+
+const errorMessage = ref('')
 
 async function handleLogin() {
-  try {
-    loading.value = true;
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email.value,
-      password: password.value,
-    });
+	loading.value = true
+	const { error } = await supabase.auth.signInWithPassword({
+		email: email.value,
+		password: password.value,
+	})
 
-    if (error) throw new Error(error.message);
+	if (error) {
+		// errorMessage.value = error.message
+		const toast = useToast()
+		toast.error(error.message, {
+			timeout: 5000,
+		})
+	} else {
+		errorMessage.value = ''
+		await router.push('/dashboard')
+	}
 
-    alert('You are logged in!');
-    await router.push('/dashboard');
-  } catch (error) {
-    if (error instanceof Error) {
-      alert(error.message);
-    }
-  } finally {
-    loading.value = false;
-  }
+	loading.value = false
 }
 </script>
 
 <style scoped>
 .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 75vh; /* Full viewport height */
+	margin: 0; /* Remove any default margin */
+	padding: 0; /* Remove any default padding */
+	background-color: #f4f5f7; /* Light grey background */
+	overflow: hidden; /* Ensures no scrolling */
 }
 
 .login-form {
-  padding: 2rem;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
+	padding: 3rem;
+	background: white;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+	border-radius: 10px;
+	width: 100%;
+	max-width: 350px; /* Slightly reduced for better focus */
+	margin: auto; /* Auto margins for vertical centering */
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* Ensures the form contents are centered */
 }
 
 .login-header {
-  margin-bottom: 2rem;
-  text-align: center;
-  color: #333;
+	margin-bottom: 2.5rem; /* More space under header */
+	font-size: 1.8rem; /* Larger font size */
+	color: #333;
+	font-weight: 600; /* Heavier font weight */
 }
 
-input[type="email"], input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.input-group {
+	margin-bottom: 1rem; /* More space between inputs */
+}
+
+input[type='email'],
+input[type='password'] {
+	width: 90%;
+	padding: 12px; /* Larger padding for better touch */
+	margin-top: 8px;
+	border: 2px solid #ccc; /* Thicker border */
+	border-radius: 6px; /* Slightly rounded */
+	background-color: #fafafa; /* Lighter input background */
+	transition: border-color 0.2s; /* Smooth transition for border color */
+}
+
+input[type='email']:focus,
+input[type='password']:focus {
+	border-color: #405983; /* Highlight color on focus */
 }
 
 button {
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #405983;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+	width: 100%;
+	padding: 12px 20px; /* Larger padding */
+	background-color: #405983;
+	color: white;
+	font-size: 1.1rem; /* Larger font size */
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition:
+		background-color 0.3s,
+		transform 0.2s; /* Added transform for hover effect */
 }
 
 button:hover {
-  background-color: #364b73;
+	background-color: #364b73;
+	transform: translateY(-2px); /* Subtle lift effect on hover */
 }
 
 .button-loading {
-  background-color: #aaa;
+	background-color: #aaa;
 }
 
 button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+	background-color: #ccc;
+	cursor: not-allowed;
+}
+
+.error-message {
+	color: red;
+	margin-top: 12px; /* More space above error message */
+	font-size: 0.9rem; /* Smaller font size for subtlety */
+	text-align: center;
 }
 </style>
