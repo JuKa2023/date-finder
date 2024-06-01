@@ -14,5 +14,5 @@ jobs:
         with:
           username: 'JuKa2023'
           reponame: 'date-finder'
-          useyarn: false
+          useyarn: true
           token: ${{ secrets.GITHUB_TOKEN }}
