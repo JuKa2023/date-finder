@@ -8,15 +8,16 @@ h3 {
 }
 
 h1 {
-	font-size: 48px;
+	font-size: 3rem;
 }
 
 h2 {
-	font-size: 36px;
+	font-size: 2.4rem;
 }
 
 h3 {
-	font-size: 24px;
+	font-size: 1.8rem;
+	color: #37314a;
 }
 
 p {
@@ -52,7 +53,7 @@ body {
 	border-radius: 4px;
 	box-shadow: 0 4px 8px 0 rgba(33, 18, 48, 1);
 	cursor: pointer;
-	border-bottom: 3px solid #ea0505;
+	border-bottom: 10px solid #c5a3ba;
 }
 
 .shadow-button:hover {

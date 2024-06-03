@@ -62,7 +62,6 @@ async function handle_logout() {
 				</ul>
 			</nav>
 		</div>
-		<hr class="faint-line" />
 	</header>
 
 	<main>

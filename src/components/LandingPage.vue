@@ -15,7 +15,7 @@ document.body.style.backgroundAttachment = 'fixed'
 			abgestimmt sind. Unsere Plattform bietet ein nahtloses Erlebnis, um jeden gemeinsamen Moment
 			besonders zu machen.
 		</p>
-		<RouterLink class="cta-button" to="/login">Jetzt starten</RouterLink>
+		<RouterLink class="shadow-button" to="/login">Jetzt starten</RouterLink>
 		<div class="image-container">
 			<img src="/src/assets/img/platzhalter.png" alt="Paar plant Dates" />
 		</div>
@@ -34,14 +34,7 @@ document.body.style.backgroundAttachment = 'fixed'
 			<h3>Einfache Planung</h3>
 			<p>
 				Unsere intuitive Plattform erleichtert die Planung und Organisation, damit ihr mehr Zeit
-				zusammen genießen könnt.
-			</p>
-		</div>
-		<div class="feature">
-			<h3>Immer und Überall</h3>
-			<p>
-				Zugriff auf unsere Plattform von jedem Gerät aus, jederzeit und überall – perfekt für
-				spontane Pläne.
+				zusammen geniessen könnt.
 			</p>
 		</div>
 	</section>
@@ -59,45 +52,28 @@ document.body.style.backgroundAttachment = 'fixed'
 
 	<section class="final-cta-section">
 		<h2>Bereit, das Dating neu zu erleben?</h2>
-		<RouterLink class="cta-button" to="/login">Starte Jetzt</RouterLink>
+		<RouterLink class="shadow-button" to="/login">Starte Jetzt</RouterLink>
 	</section>
 </template>
 
 <style scoped>
 .hero-section {
-	background-color: rgba(18, 18, 18, 0.75);
-	color: #ffffff;
+	color: #211230;
 	padding: 60px;
 	text-align: center;
 }
 
 .hero-section h1 {
 	font-size: 3.5rem;
-	color: #ff5a5f;
 	font-weight: bold;
 	margin-bottom: 30px;
 }
 
 .hero-section p {
 	font-size: 1.6rem;
-	color: #ccc;
+	color: #211230;
 	max-width: 650px;
 	margin: 30px auto;
-}
-
-.cta-button {
-	background-color: #ff5a5f;
-	color: white;
-	padding: 18px 35px;
-	font-size: 1.4rem;
-	font-weight: bold;
-	border-radius: 8px;
-	transition: background-color 0.3s ease;
-	margin-top: 25px;
-}
-
-.cta-button:hover {
-	background-color: #e14e53;
 }
 
 .image-container img {
@@ -128,10 +104,6 @@ document.body.style.backgroundAttachment = 'fixed'
 	margin-bottom: 20px;
 }
 
-.feature h3 {
-	font-size: 1.8rem;
-	color: #ff5a5f;
-}
 
 .feature p,
 .testimonial p,

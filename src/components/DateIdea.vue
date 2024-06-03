@@ -135,10 +135,6 @@ function getImgUrl(date_id) {
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
-	margin: 1rem;
-	padding: 1rem;
-	background-color: #ffffff;
-	border-radius: 4px;
 	gap: 20px;
 }
 
@@ -148,6 +144,10 @@ function getImgUrl(date_id) {
 	align-items: center;
 	flex-direction: row;
 	gap: 20px;
+	margin: 1rem;
+	padding: 1rem;
+	background-color: #ffffff;
+	border-radius: 4px;
 }
 
 .date {
