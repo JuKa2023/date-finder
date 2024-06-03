@@ -33,10 +33,10 @@ import { ref, defineEmits } from 'vue'
 
 const emits = defineEmits(['step-complete'])
 
-const morgenImgUrl = new URL('/src/assets/img/icons/active.png', import.meta.url).href
-const nachmittagImgUrl = new URL('/src/assets/img/icons/laidback.png', import.meta.url).href
-const abendImgUrl = new URL('/src/assets/img/icons/neutral.png', import.meta.url).href
-const nachtImgUrl = new URL('/src/assets/img/icons/neutral.png', import.meta.url).href
+const morgenImgUrl = new URL('/src/assets/img/searchsteps/morgen.svg', import.meta.url).href
+const nachmittagImgUrl = new URL('/src/assets/img/searchsteps/nachmittag.svg', import.meta.url).href
+const abendImgUrl = new URL('/src/assets/img/searchsteps/abend.svg', import.meta.url).href
+const nachtImgUrl = new URL('/src/assets/img/searchsteps/nacht.svg', import.meta.url).href
 
 const options = ref([
 	{ text: 'Morgen', img: morgenImgUrl, color: '#394263' },
@@ -57,5 +57,17 @@ function selectOption(option) {
 </script>
 
 <style scoped>
+
+.activity{
+	height: 70px;
+}
+
+.top{
+	padding: 10px 10px;
+	width: calc(100% - 20px);
+}
+.bildCard{
+margin: 10px 0 0 0;
+}
 /* Your CSS here or in the global stylesheet */
 </style>

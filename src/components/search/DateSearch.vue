@@ -125,7 +125,7 @@ onMounted(() => {
 
 	<MultiStep v-if="!isComplete" :steps="registerSteps" @all-steps-complete="handleFilterComplete" />
 
-	<main v-else class="format">
+	<section v-else class="format">
 		<h1>Das sind die Top auswahlen für dein Date</h1>
 		<p>
 			Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am
@@ -133,14 +133,14 @@ onMounted(() => {
 			durchgeführt hast.
 		</p>
 
-		<section class="chips">
+		<div class="chips">
 			<div v-for="tag in searchTags" :key="tag" class="chip" @click="removeRestriction(tag)">
 				<span>{{ tag }}</span>
 			</div>
-		</section>
+		</div>
 
 		<DateList :date_objects="results" :isLoading="isLoading"></DateList>
-	</main>
+	</section>
 </template>
 
 <style scoped>

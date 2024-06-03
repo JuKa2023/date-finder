@@ -8,6 +8,7 @@ document.body.style.backgroundAttachment = 'fixed'
 </script>
 
 <template>
+	<div>
 	<section class="hero-section">
 		<h1>Entdecke neue Wege zu daten!</h1>
 		<p>
@@ -54,6 +55,7 @@ document.body.style.backgroundAttachment = 'fixed'
 		<h2>Bereit, das Dating neu zu erleben?</h2>
 		<RouterLink class="shadow-button" to="/login">Starte Jetzt</RouterLink>
 	</section>
+	</div>
 </template>
 
 <style scoped>
