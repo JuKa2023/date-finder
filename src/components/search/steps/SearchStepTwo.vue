@@ -32,9 +32,9 @@
 <script setup>
 import { ref, defineEmits } from 'vue'
 
-const kostenlosImgUrl = new URL('/src/assets/img/icons/active.png', import.meta.url).href
-const budgetImgUrl = new URL('/src/assets/img/icons/laidback.png', import.meta.url).href
-const luxusImgUrl = new URL('/src/assets/img/icons/neutral.png', import.meta.url).href
+const kostenlosImgUrl = new URL('/src/assets/img/searchsteps/gratis.svg', import.meta.url).href
+const budgetImgUrl = new URL('/src/assets/img/searchsteps/budgetfreundlich.svg', import.meta.url).href
+const luxusImgUrl = new URL('/src/assets/img/searchsteps/luxuriös.svg', import.meta.url).href
 
 const options = ref([
 	{ text: 'Kostenlos', img: kostenlosImgUrl, color: '#53D1CD' },
