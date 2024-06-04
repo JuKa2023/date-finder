@@ -32,8 +32,8 @@
 <script setup>
 import { ref, defineEmits } from 'vue'
 
-const drinnenImgUrl = new URL('/src/assets/img/icons/active.png', import.meta.url).href
-const draussenImgUrl = new URL('/src/assets/img/icons/laidback.png', import.meta.url).href
+const drinnenImgUrl = new URL('/src/assets/img/searchsteps/drinnen.svg', import.meta.url).href
+const draussenImgUrl = new URL('/src/assets/img/searchsteps/draussen.svg', import.meta.url).href
 
 const options = ref([
 	{ text: 'Drinnen', img: drinnenImgUrl, color: '#00796B' },

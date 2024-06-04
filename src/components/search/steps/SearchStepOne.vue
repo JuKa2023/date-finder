@@ -33,8 +33,8 @@ import { ref, defineEmits } from 'vue'
 
 const emits = defineEmits(['step-complete'])
 
-const aktivImgUrl = new URL('/src/assets/img/platzhalter.png', import.meta.url).href
-const lockerImgUrl = new URL('/src/assets/img/platzhalter.png', import.meta.url).href
+const aktivImgUrl = new URL('/src/assets/img/searchsteps/aktiv.svg', import.meta.url).href
+const lockerImgUrl = new URL('/src/assets/img/searchsteps/locker.svg', import.meta.url).href
 
 const options = ref([
 	{ text: 'aktiv', img: aktivImgUrl, color: '#E8A9BF' },
