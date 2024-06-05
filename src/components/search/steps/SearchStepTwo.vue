@@ -38,8 +38,8 @@ const luxusImgUrl = new URL('/src/assets/img/searchsteps/luxuriös.svg', import.
 
 const options = ref([
 	{ text: 'Kostenlos', img: kostenlosImgUrl, color: '#53D1CD' },
-	{ text: 'Budget freundlich', img: budgetImgUrl, color: '#C6A9F8' },
-	{ text: 'Luxuriös', img: luxusImgUrl, color: '#9DB4A0' },
+	{ text: 'Budget freundlich', img: budgetImgUrl, color: '#9DB4A0' },
+	{ text: 'Luxuriös', img: luxusImgUrl, color: '#bea3ed' },
 ])
 
 const emits = defineEmits(['step-complete'])
@@ -55,4 +55,16 @@ function selectOption(option) {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+	.activity{
+		height: 70px;
+	}
+
+	.top{
+		padding: 10px 10px;
+		width: calc(100% - 20px);
+	}
+	.bildCard{
+		margin: 10px 0 0 0;
+	}
+</style>

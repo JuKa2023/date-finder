@@ -34,9 +34,9 @@ import { ref, defineEmits } from 'vue'
 
 const emits = defineEmits(['step-complete'])
 
-const paarStundenImgUrl = new URL('/src/assets/img/icons/active.png', import.meta.url).href
-const halberTagImgUrl = new URL('/src/assets/img/icons/neutral.png', import.meta.url).href
-const ganzerTagImgUrl = new URL('/src/assets/img/icons/neutral.png', import.meta.url).href
+const paarStundenImgUrl = new URL('/src/assets/img/searchsteps/paarstunden.svg', import.meta.url).href
+const halberTagImgUrl = new URL('/src/assets/img/searchsteps/halbtag.svg', import.meta.url).href
+const ganzerTagImgUrl = new URL('/src/assets/img/searchsteps/ganztag.svg', import.meta.url).href
 
 const options = ref([
 	{ text: 'paar Stunden', img: paarStundenImgUrl, color: '#A2D5AB' },
@@ -54,3 +54,17 @@ function selectOption(option) {
 	emits('step-complete', option)
 }
 </script>
+
+<style scoped>
+	.activity{
+		height: 70px;
+	}
+
+	.top{
+		padding: 10px 10px;
+		width: calc(100% - 20px);
+	}
+	.bildCard{
+		margin: 10px 0 0 0;
+	}
+</style>
