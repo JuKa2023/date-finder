@@ -59,17 +59,29 @@ async function fetchMostSavedIdeas() {
 </script>
 
 <template>
-	<h3>Hallo {{ name }}</h3>
+	<div class="flexobject">
+		<h3 class="welcomeback">Hallo {{ name }}</h3>
 
-	<section class="format">
-		<h2>Gespeicherte Ideen</h2>
-		<DateList :date_objects="savedIdeas" />
-	</section>
+		<div class="format">
+			<h2>Gespeicherte Ideen</h2>
+			<DateList :date_objects="savedIdeas" />
+		</div>
 
-	<section class="format">
-		<h2>Beliebteste gespeicherte Ideen</h2>
-		<DateList :date_objects="mostSavedIdeas" />
-	</section>
+		<div class="format">
+			<h2>Beliebteste gespeicherte Ideen</h2>
+			<DateList :date_objects="mostSavedIdeas" />
+		</div>
+	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.flexobject{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.welcomeback {
+	margin: 0;
+}
+</style>
