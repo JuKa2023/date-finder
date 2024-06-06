@@ -121,12 +121,10 @@ onMounted(() => {
 </script>
 
 <template>
-	<button v-if="isComplete" class="shadow-button" @click="clearSearch">Clear Search</button>
-
 	<MultiStep v-if="!isComplete" :steps="registerSteps" @all-steps-complete="handleFilterComplete" />
 
-	<section v-else class="format">
-		<h1>Das sind die Top auswahlen für dein Date</h1>
+	<section v-else class="topdate">
+		<h1 class="pageusch">Das sind die Top auswahlen für dein Date</h1>
 		<p>
 			Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am
 			besten passende zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht
@@ -141,13 +139,19 @@ onMounted(() => {
 
 		<DateList :date_objects="results" :isLoading="isLoading"></DateList>
 	</section>
+
+	<button v-if="isComplete" class="shadow-button" @click="clearSearch">Clear Search</button>
 </template>
 
 <style scoped>
-.format {
+.topdate {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 }
 
 .chips {
@@ -168,5 +172,11 @@ onMounted(() => {
 	background-color: #ffffff;
 	margin: 2px;
 	color: #7a798c;
+}
+
+main{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 </style>
