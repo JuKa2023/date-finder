@@ -3,6 +3,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { supabase } from '@/supabase'
 import { get_user } from '@/authentication'
+import { useToast } from 'vue-toastification'
 
 const route = useRoute()
 const id = ref(route.params.id)
@@ -59,11 +60,6 @@ async function checkProfileIdea(ideaId, profileId) {
 	isSaved.value = data.length > 0 ? data[0].saved : false
 }
 
-async function toggleLikeIdea() {
-	isLiked.value = !isLiked.value
-	await updateProfileIdea(id.value, user.value.id, 'liked', isLiked.value)
-}
-
 async function toggleSaveIdea() {
 	isSaved.value = !isSaved.value
 	await updateProfileIdea(id.value, user.value.id, 'saved', isSaved.value)
@@ -76,8 +72,11 @@ async function updateProfileIdea(ideaId, profileId, field, value) {
 		.eq('idea_id', ideaId)
 		.eq('profile_id', profileId)
 
+	const toast = useToast();
+
 	if (selectError) {
-		console.error('Error fetching profile idea:', selectError)
+		console.error(selectError)
+		toast.error('Error retrieving idea')
 		return
 	}
 
@@ -89,7 +88,9 @@ async function updateProfileIdea(ideaId, profileId, field, value) {
 			.eq('profile_id', profileId)
 
 		if (updateError) {
-			console.error('Error updating profile idea:', updateError)
+			toast.error('Fehler beim aktualisieren der Idee')
+		} else {
+			toast.success(value ? 'Idea saved!' : 'Idea unsaved!')
 		}
 	} else {
 		const { error: insertError } = await supabase.from('profiles_ideas').insert({
@@ -99,7 +100,9 @@ async function updateProfileIdea(ideaId, profileId, field, value) {
 		})
 
 		if (insertError) {
-			console.error('Error inserting profile idea:', insertError)
+			toast.error('Fehler beim speichern der Änderungen')
+		} else {
+			toast.success(value ? 'Idea saved!' : 'Idea unsaved!')
 		}
 	}
 }

@@ -107,7 +107,7 @@ const removeRestriction = (tagName) => {
 	searchTags.value = searchTags.value.filter((tag) => tag !== tagName)
 	if (!searchTags.value.length) {
 		clearSearch()
-		toast.info('Nothing to search for.')
+		toast.info('Es wurden alle Filter entfernt')
 	} else {
 		saveSearch(searchTags.value)
 		updateSearchResults()
@@ -132,10 +132,12 @@ onMounted(() => {
 		</p>
 
 		<div class="chips">
-			<div v-for="tag in searchTags" :key="tag" class="chip" @click="removeRestriction(tag)">
-				<span>{{ tag }}</span>
+			<div v-for="tag in searchTags" :key="tag" class="chip">
+					<span>{{ tag }}</span>
+					<span class="close-icon" @click.stop="removeRestriction(tag)">x</span>
 			</div>
-		</div>
+	</div>
+
 
 		<DateList :date_objects="results" :isLoading="isLoading"></DateList>
 	</section>
@@ -164,15 +166,25 @@ onMounted(() => {
 }
 
 .chip {
-	padding: 0 10px;
-	font-size: 14px;
-	line-height: 30px;
-	border: #7a798c 1px solid;
-	border-radius: 25px;
-	background-color: #ffffff;
-	margin: 2px;
-	color: #7a798c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align tag text and close icon */
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 30px;
+    border: #7a798c 1px solid;
+    border-radius: 25px;
+    background-color: #ffffff;
+    margin: 2px;
+    color: #7a798c;
 }
+
+.close-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #cc0000; /* Red color for the icon */
+}
+
 
 main{
 	display: flex;
