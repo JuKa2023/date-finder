@@ -30,31 +30,31 @@ async function handle_logout() {
 		<div class="containerheader">
 			<nav>
 				<ul>
-					<li class="dropdown">
-						<a href="/date-finder/" aria-haspopup="true" aria-expanded="false">
+					<li>
+						<a href="/date-finder/">
 							<img alt="Home" class="iconHeader home-icon" src="/src/assets/img/logo.svg" />
 						</a>
-						<div v-if="isLoggedIn" class="dropdown-content" aria-labelledby="homeMenu">
-							<RouterLink to="find">Date suchen</RouterLink>
-						</div>
 					</li>
-					<li class="dropdown" v-if="isLoggedIn">
-						<a href="/date-finder/" aria-haspopup="true" aria-expanded="false">
-							<img
-								alt="Konto"
-								class="iconHeader account-icon"
-								src="/src/assets/img/icons/konto.svg"
-							/>
-						</a>
-						<div v-if="isLoggedIn" class="dropdown-content" aria-labelledby="accountMenu">
-							<RouterLink to="/account">Mein Konto</RouterLink>
-							<a @click.prevent="handle_logout">Logout</a>
-						</div>
-						<div v-else class="dropdown-content" aria-labelledby="loginMenu">
-							<RouterLink to="/login">Login</RouterLink>
-							<RouterLink to="/register">Registrieren</RouterLink>
-						</div>
-					</li>
+					<div v-if="isLoggedIn" class="icons-container">
+						<li>
+							<a href="/DateSearch/">
+								<img alt="Search" class="iconHeader search-icon" src="/src/assets/img/icons/search.svg" />
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="/date-finder/" aria-haspopup="true" aria-expanded="false">
+								<img
+									alt="Konto"
+									class="iconHeader account-icon"
+									src="/src/assets/img/icons/konto.svg"
+								/>
+							</a>
+							<div class="dropdown-content" aria-labelledby="accountMenu">
+								<RouterLink to="/account">Mein Konto</RouterLink>
+								<a @click.prevent="handle_logout">Logout</a>
+							</div>
+						</li>
+					</div>
 					<li v-else>
 						<RouterLink to="/login" class="linkOnly">Login</RouterLink>
 						<RouterLink to="/register" class="linkOnly">Registrieren</RouterLink>
@@ -110,32 +110,26 @@ nav ul li a:hover {
 	outline: none;
 }
 
-@keyframes spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
-
 .iconHeader {
 	padding-bottom: 10px;
 	transition: transform 0.6s ease;
 	transform-origin: center;
 }
 
-.iconHeader:hover {
-	transform: rotate(360deg);
-}
-
 .home-icon {
 	height: 40px;
 }
 
-.account-icon {
+.search-icon, .account-icon {
 	height: 25px;
 	transition: none;
+}
+
+.icons-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 15%;
 }
 
 .containerheader {
