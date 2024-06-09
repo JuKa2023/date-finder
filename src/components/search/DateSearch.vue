@@ -127,8 +127,7 @@ onMounted(() => {
 		<h1 class="pageusch">Das sind die Top auswahlen für dein Date</h1>
 		<p>
 			Die Resultate werden basierend auf deinem Input und deinen Interessen sortiert, wobei das am
-			besten passende zuerst angezeigt wird. Es werden nur Ergebnisse angezeigt, die du noch nicht
-			durchgeführt hast.
+			besten passende zuerst angezeigt wird.
 		</p>
 
 		<div class="chips">
@@ -141,8 +140,10 @@ onMounted(() => {
 
 		<DateList :date_objects="results" :isLoading="isLoading"></DateList>
 	</section>
+	<div class="btncenter">
 
-	<button v-if="isComplete" class="shadow-button" @click="clearSearch">Clear Search</button>
+	<button v-if="isComplete" class="shadow-button" @click="clearSearch">Neue Suche</button>
+	</div>
 </template>
 
 <style scoped>
@@ -183,6 +184,11 @@ onMounted(() => {
     cursor: pointer;
     margin-left: 10px;
     color: #cc0000; /* Red color for the icon */
+}
+
+.btncenter {
+	display: flex;
+	justify-content: center;
 }
 
 

@@ -1,10 +1,10 @@
 <template>
 	<div class="register-container">
 		<form class="register-form" @submit.prevent="onRegisterComplete">
-			<h1 class="register-header">Create Your Account</h1>
+			<h1 class="register-header">Erstelle deinen Account</h1>
 			<div class="input-group">
 				<label for="email">Email</label>
-				<input id="email" required type="email" placeholder="Enter your email" v-model="email" />
+				<input id="email" required type="email" placeholder="Deine Emailadresse" v-model="email" />
 			</div>
 			<div class="input-group">
 				<label for="username">Username</label>
@@ -12,22 +12,22 @@
 					id="username"
 					required
 					type="text"
-					placeholder="Enter your username"
+					placeholder="Dein Username"
 					v-model="username"
 				/>
 			</div>
 			<div class="input-group">
-				<label for="password">Password</label>
+					<label for="password">Passwort</label>
 				<input
 					id="password"
 					required
 					type="password"
-					placeholder="Enter your password"
+					placeholder="Dein Passwort"
 					v-model="password"
 				/>
 			</div>
 			<button type="submit" :class="{ 'button-loading': loading }" :disabled="loading">
-				{{ loading ? 'Loading...' : 'Register' }}
+				{{ loading ? 'Lädt...' : 'Register' }}
 			</button>
 			<p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 		</form>
@@ -74,7 +74,6 @@ async function onRegisterComplete() {
 	justify-content: center;
 	align-items: center;
 	height: 75vh; /* Full viewport height */
-	background-color: #f4f5f7; /* Light grey background */
 	overflow: hidden; /* Ensures no scrolling */
 }
 

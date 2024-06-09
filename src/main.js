@@ -11,7 +11,7 @@ import { is_authenticated, reset_local_storage, set_session } from '@/authentica
 import { supabase } from '@/supabase'
 import Dashboard from '@/components/Dashboard.vue'
 import DateFilter from '@/components/search/DateSearch.vue'
-import Register from '@/components/register/Register.vue'
+import Register from '@/components/Register.vue'
 import DateIdea from '@/components/DateIdea.vue'
 
 import Toast from 'vue-toastification'
