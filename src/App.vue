@@ -37,7 +37,7 @@ async function handle_logout() {
 					</li>
 					<div v-if="isLoggedIn" class="icons-container">
 						<li>
-							<a href="/DateSearch/">
+							<a href="/date-finder/find/">
 								<img alt="Search" class="iconHeader search-icon" src="/src/assets/img/icons/search.svg" />
 							</a>
 						</li>

@@ -1,23 +1,23 @@
 <template>
 	<div class="login-container">
 		<form class="login-form" @submit.prevent="handleLogin">
-			<h1 class="login-header">Login to Your Account</h1>
+			<h1 class="login-header">Login</h1>
 			<div class="input-group">
 				<label for="email">Email</label>
-				<input id="email" required type="email" placeholder="Enter your email" v-model="email" />
+				<input id="email" required type="email" placeholder="Deine Emailaddresse" v-model="email" />
 			</div>
 			<div class="input-group">
-				<label for="password">Password</label>
+				<label for="password">Passwort</label>
 				<input
 					id="password"
 					required
 					type="password"
-					placeholder="Enter your password"
+					placeholder="Dein Passwort"
 					v-model="password"
 				/>
 			</div>
 			<button type="submit" :class="{ 'button-loading': loading }" :disabled="loading">
-				{{ loading ? 'Loading...' : 'Login' }}
+				{{ loading ? 'Lädt...' : 'Login' }}
 			</button>
 			<p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 		</form>
@@ -67,7 +67,6 @@ async function handleLogin() {
 	height: 75vh; /* Full viewport height */
 	margin: 0; /* Remove any default margin */
 	padding: 0; /* Remove any default padding */
-	background-color: #f4f5f7; /* Light grey background */
 	overflow: hidden; /* Ensures no scrolling */
 }
 
