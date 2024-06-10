@@ -8,7 +8,7 @@ document.body.style.backgroundAttachment = 'fixed'
 </script>
 
 <template>
-	<div>
+	<div class="backdrop">
 	<section class="hero-section">
 		<h1>Entdecke neue Wege zu daten!</h1>
 		<p>
@@ -38,6 +38,15 @@ document.body.style.backgroundAttachment = 'fixed'
 				zusammen geniessen könnt.
 			</p>
 		</div>
+
+		<div class="feature">
+			<h3>Persönliche Empfehlungen</h3>
+			<p>
+				Erhalte maßgeschneiderte Vorschläge basierend auf euren Vorlieben und gemeinsamen Interessen,
+				um jede Verabredung unvergesslich zu machen.
+			</p>
+		</div>
+
 	</section>
 
 	<section class="testimonials-section">
@@ -59,9 +68,14 @@ document.body.style.backgroundAttachment = 'fixed'
 </template>
 
 <style scoped>
+
+.backdrop{
+	backdrop-filter: blur(10px);
+	height: 100%;
+}
 .hero-section {
 	color: #211230;
-	padding: 60px;
+	padding: 10px 20px 10px 20px;
 	text-align: center;
 }
 
@@ -86,11 +100,22 @@ document.body.style.backgroundAttachment = 'fixed'
 }
 
 .features-section,
-.testimonials-section,
-.final-cta-section {
-	background-color: rgba(255, 255, 255, 0.95); /* Light background for these sections */
+.testimonials-section{
+	background-color: rgba(255, 255, 255, 0.95);
+	color: #333;
+	padding: 30px 20px;
+	margin: 0px 30px 0px 30px;
+	text-align: center;
+}
+
+.features-section{
+	margin-top: 30px;
+}
+
+.final-cta-section{
 	color: #333;
 	padding: 50px 20px;
+	margin: 0px 30px 0px 30px;
 	text-align: center;
 }
 
@@ -123,24 +148,10 @@ document.body.style.backgroundAttachment = 'fixed'
 	color: #666;
 }
 
-.final-cta-section {
-	background-color: #121212;
-	color: #ffffff;
-}
+
 
 .final-cta-section h2 {
-	color: white;
+	color: #211230;
 }
 
-.final-cta-section .cta-button {
-	margin-top: 20px;
-	padding: 18px 35px;
-	font-size: 1.4rem;
-	background-color: #ff5a5f;
-	border-radius: 8px;
-}
-
-.final-cta-section .cta-button:hover {
-	background-color: #e14e53;
-}
 </style>
