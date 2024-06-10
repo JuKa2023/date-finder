@@ -32,6 +32,10 @@ p {
 	font-size: 18px;
 }
 
+input{
+	font-family: 'Roboto', sans-serif;
+}
+
 span {
 	font-family: 'Roboto', sans-serif;
 }

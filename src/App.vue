@@ -55,7 +55,7 @@ async function handle_logout() {
 							</div>
 						</li>
 					</div>
-					<li v-else>
+					<li v-else class="loginreg">
 						<RouterLink to="/login" class="linkOnly">Login</RouterLink>
 						<RouterLink to="/register" class="linkOnly">Registrieren</RouterLink>
 					</li>
@@ -136,6 +136,12 @@ nav ul li a:hover {
 	max-width: 1000px;
 	margin: 0 auto;
 	width: 100%;
+}
+
+.loginreg{
+	display: flex;
+	justify-content: space-between;
+	gap: 40px;
 }
 
 .dropdown-content {
