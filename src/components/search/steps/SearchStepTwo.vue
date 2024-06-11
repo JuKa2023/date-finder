@@ -33,7 +33,8 @@
 import { ref, defineEmits } from 'vue'
 
 const kostenlosImgUrl = new URL('/src/assets/img/searchsteps/gratis.svg', import.meta.url).href
-const budgetImgUrl = new URL('/src/assets/img/searchsteps/budgetfreundlich.svg', import.meta.url).href
+const budgetImgUrl = new URL('/src/assets/img/searchsteps/budgetfreundlich.svg', import.meta.url)
+	.href
 const luxusImgUrl = new URL('/src/assets/img/searchsteps/luxoriös.svg', import.meta.url).href
 
 const options = ref([
@@ -56,15 +57,15 @@ function selectOption(option) {
 </script>
 
 <style scoped>
-	.activity{
-		height: 70px;
-	}
+.activity {
+	height: 70px;
+}
 
-	.top{
-		padding: 10px 10px;
-		width: calc(100% - 20px);
-	}
-	.bildCard{
-		margin: 10px 0 0 0;
-	}
+.top {
+	padding: 10px 10px;
+	width: calc(100% - 20px);
+}
+.bildCard {
+	margin: 10px 0 0 0;
+}
 </style>

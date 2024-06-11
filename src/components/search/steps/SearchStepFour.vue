@@ -57,17 +57,16 @@ function selectOption(option) {
 </script>
 
 <style scoped>
-
-.activity{
+.activity {
 	height: 70px;
 }
 
-.top{
+.top {
 	padding: 10px 10px;
 	width: calc(100% - 20px);
 }
-.bildCard{
-margin: 10px 0 0 0;
+.bildCard {
+	margin: 10px 0 0 0;
 }
 /* Your CSS here or in the global stylesheet */
 </style>

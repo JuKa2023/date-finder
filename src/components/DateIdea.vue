@@ -8,7 +8,6 @@ import { useToast } from 'vue-toastification'
 const route = useRoute()
 const id = ref(route.params.id)
 const idea = ref(null)
-const isLiked = ref(false)
 const isSaved = ref(false)
 const user = ref(null)
 
@@ -51,12 +50,9 @@ async function checkProfileIdea(ideaId, profileId) {
 
 	if (error) {
 		console.error(error)
-		isLiked.value = false
 		isSaved.value = false
 		return
 	}
-
-	isLiked.value = data.length > 0 ? data[0].liked : false
 	isSaved.value = data.length > 0 ? data[0].saved : false
 }
 
@@ -72,7 +68,7 @@ async function updateProfileIdea(ideaId, profileId, field, value) {
 		.eq('idea_id', ideaId)
 		.eq('profile_id', profileId)
 
-	const toast = useToast();
+	const toast = useToast()
 
 	if (selectError) {
 		console.error(selectError)

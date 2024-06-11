@@ -38,7 +38,11 @@ async function handle_logout() {
 					<div v-if="isLoggedIn" class="icons-container">
 						<li>
 							<a href="/date-finder/find/">
-								<img alt="Search" class="iconHeader search-icon" src="/src/assets/img/icons/search.svg" />
+								<img
+									alt="Search"
+									class="iconHeader search-icon"
+									src="/src/assets/img/icons/search.svg"
+								/>
 							</a>
 						</li>
 						<li class="dropdown">
@@ -120,7 +124,8 @@ nav ul li a:hover {
 	height: 40px;
 }
 
-.search-icon, .account-icon {
+.search-icon,
+.account-icon {
 	height: 25px;
 	transition: none;
 }
@@ -138,7 +143,7 @@ nav ul li a:hover {
 	width: 100%;
 }
 
-.loginreg{
+.loginreg {
 	display: flex;
 	justify-content: space-between;
 	gap: 40px;

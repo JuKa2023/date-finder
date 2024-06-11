@@ -8,16 +8,10 @@
 			</div>
 			<div class="input-group">
 				<label for="username">Username</label>
-				<input
-					id="username"
-					required
-					type="text"
-					placeholder="Dein Username"
-					v-model="username"
-				/>
+				<input id="username" required type="text" placeholder="Dein Username" v-model="username" />
 			</div>
 			<div class="input-group">
-					<label for="password">Passwort</label>
+				<label for="password">Passwort</label>
 				<input
 					id="password"
 					required
@@ -26,10 +20,20 @@
 					v-model="password"
 				/>
 			</div>
+
+			<div class="input-group">
+				<label for="confirmPassword">Passwort bestätigen</label>
+				<input
+					id="confirmPassword"
+					required
+					type="password"
+					placeholder="Passwort bestätigen"
+					v-model="confirmPassword"
+				/>
+			</div>
 			<button type="submit" :class="{ 'button-loading': loading }" :disabled="loading">
 				{{ loading ? 'Lädt...' : 'Register' }}
 			</button>
-			<p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 		</form>
 	</div>
 </template>
@@ -38,30 +42,42 @@
 import { ref } from 'vue'
 import { supabase } from '@/supabase'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
 const router = useRouter()
 const loading = ref(false)
 const email = ref('')
 const username = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 const errorMessage = ref('')
+
+const toast = useToast()
 
 async function onRegisterComplete() {
 	try {
 		loading.value = true
 		errorMessage.value = ''
 
+		if (password.value !== confirmPassword.value) {
+			throw new Error('Passwörter stimmen nicht überein')
+		}
+
 		const { data, error } = await supabase.auth.signUp({
 			email: email.value,
 			password: password.value,
+			data: { username: username.value },
 		})
 
 		if (error) throw new Error(error.message)
+
+		toast.success('Account erfolgreich erstellt. Bitte logge dich ein.')
 		await router.push('/login')
 	} catch (error) {
-		if (error instanceof Error) {
-			errorMessage.value = error.message
-		}
+		errorMessage.value = error.message
+		toast.error(error.message, { timeout: 7000 })
+		password.value = ''
+		confirmPassword.value = ''
 	} finally {
 		loading.value = false
 	}

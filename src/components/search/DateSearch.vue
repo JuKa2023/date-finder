@@ -81,27 +81,26 @@ const handleFilterComplete = (results) => {
 }
 
 const updateSearchResults = async () => {
-  if (!searchTags.value.length) return
+	if (!searchTags.value.length) return
 
-  isLoading.value = true
-  let ideas = await getIdeasByTags(searchTags.value)
+	isLoading.value = true
+	let ideas = await getIdeasByTags(searchTags.value)
 
-  const searchTagsSet = new Set(searchTags.value);
-  ideas = ideas.sort((a, b) => {
-    const aCommon = a.tags.filter(tagName => searchTagsSet.has(tagName)).length;
-    const bCommon = b.tags.filter(tagName => searchTagsSet.has(tagName)).length;
+	const searchTagsSet = new Set(searchTags.value)
+	ideas = ideas.sort((a, b) => {
+		const aCommon = a.tags.filter((tagName) => searchTagsSet.has(tagName)).length
+		const bCommon = b.tags.filter((tagName) => searchTagsSet.has(tagName)).length
 
-    if (aCommon === bCommon) {
-      return a.title.localeCompare(b.name);
-    }
+		if (aCommon === bCommon) {
+			return a.title.localeCompare(b.name)
+		}
 
-    return bCommon - aCommon;
-  })
+		return bCommon - aCommon
+	})
 
-  results.value = ideas
-  isLoading.value = false
+	results.value = ideas
+	isLoading.value = false
 }
-
 
 const removeRestriction = (tagName) => {
 	searchTags.value = searchTags.value.filter((tag) => tag !== tagName)
@@ -132,17 +131,15 @@ onMounted(() => {
 
 		<div class="chips">
 			<div v-for="tag in searchTags" :key="tag" class="chip">
-					<span>{{ tag }}</span>
-					<span class="close-icon" @click.stop="removeRestriction(tag)">x</span>
+				<span>{{ tag }}</span>
+				<span class="close-icon" @click.stop="removeRestriction(tag)">x</span>
 			</div>
-	</div>
-
+		</div>
 
 		<DateList :date_objects="results" :isLoading="isLoading"></DateList>
 	</section>
 	<div class="btncenter">
-
-	<button v-if="isComplete" class="shadow-button" @click="clearSearch">Neue Suche</button>
+		<button v-if="isComplete" class="shadow-button" @click="clearSearch">Neue Suche</button>
 	</div>
 </template>
 
@@ -167,23 +164,23 @@ onMounted(() => {
 }
 
 .chip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Align tag text and close icon */
-    padding: 0 10px;
-    font-size: 14px;
-    line-height: 30px;
-    border: #7a798c 1px solid;
-    border-radius: 25px;
-    background-color: #ffffff;
-    margin: 2px;
-    color: #7a798c;
+	display: flex;
+	align-items: center;
+	justify-content: space-between; /* Align tag text and close icon */
+	padding: 0 10px;
+	font-size: 14px;
+	line-height: 30px;
+	border: #7a798c 1px solid;
+	border-radius: 25px;
+	background-color: #ffffff;
+	margin: 2px;
+	color: #7a798c;
 }
 
 .close-icon {
-    cursor: pointer;
-    margin-left: 10px;
-    color: #cc0000; /* Red color for the icon */
+	cursor: pointer;
+	margin-left: 10px;
+	color: #cc0000; /* Red color for the icon */
 }
 
 .btncenter {
@@ -191,8 +188,7 @@ onMounted(() => {
 	justify-content: center;
 }
 
-
-main{
+main {
 	display: flex;
 	flex-direction: column;
 	align-items: center;

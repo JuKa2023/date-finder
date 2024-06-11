@@ -21,12 +21,14 @@ onMounted(async () => {
 async function updateSavedLikedIdeas(userId) {
 	const { data, error } = await supabase
 		.from('profiles_ideas')
-		.select(`
+		.select(
+			`
                 idea_id,
                 liked,
                 saved,
                 idea (*)
-            `)
+            `
+		)
 		.eq('profile_id', userId)
 
 	if (error) throw error
@@ -36,26 +38,23 @@ async function updateSavedLikedIdeas(userId) {
 }
 
 async function fetchMostSavedIdeas() {
-	let { data, error } = await supabase
-		.rpc('get_most_saved_ideas');
+	let { data, error } = await supabase.rpc('get_most_saved_ideas')
 
 	if (error) {
-		console.error('Error fetching most saved ideas via RPC:', error.message);
-		return;
+		console.error('Error fetching most saved ideas via RPC:', error.message)
+		return
 	}
 
 	data.forEach((idea) => {
-		idea.id = idea.idea_id;
-		delete idea.idea_id;
-	});
-	data = data.sort((a, b) => b.save_count - a.save_count);
-	data = data.filter((idea) => !savedIdeas.value.some((savedIdea) => savedIdea.id === idea.id));
-	data = data.slice(0, 3);
+		idea.id = idea.idea_id
+		delete idea.idea_id
+	})
+	data = data.sort((a, b) => b.save_count - a.save_count)
+	data = data.filter((idea) => !savedIdeas.value.some((savedIdea) => savedIdea.id === idea.id))
+	data = data.slice(0, 3)
 
-	mostSavedIdeas.value = data;
+	mostSavedIdeas.value = data
 }
-
-
 </script>
 
 <template>
@@ -75,7 +74,7 @@ async function fetchMostSavedIdeas() {
 </template>
 
 <style scoped>
-.flexobject{
+.flexobject {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
