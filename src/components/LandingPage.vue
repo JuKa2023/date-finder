@@ -18,7 +18,7 @@ document.body.style.backgroundAttachment = 'fixed'
 			</p>
 			<RouterLink class="shadow-button" to="/login">Jetzt starten</RouterLink>
 			<div class="image-container">
-				<img src="/src/assets/img/platzhalter.png" alt="Paar plant Dates" />
+				<img src="/src/assets/img/paaramplanen.webp" alt="Paar plant Dates" />
 			</div>
 		</section>
 
