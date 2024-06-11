@@ -180,7 +180,7 @@ onMounted(() => {
 .close-icon {
 	cursor: pointer;
 	margin-left: 10px;
-	color: #cc0000; /* Red color for the icon */
+	color: #7a798c; /* Red color for the icon */
 }
 
 .btncenter {
